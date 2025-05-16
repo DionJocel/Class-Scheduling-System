@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link rel="stylesheet" href="login.css">
+    <title> Welcome to BPsync! </title>
+</head>
+
+<body>
+    <div class="logo-animation">
+        <div class="logo-box">
+            <img src="B.png" class="B">
+        </div>
+        <div class="logo-box">
+            <img src="P.png" class="P">
+        </div>
+        <div class="logo-box">
+            <img src="sync.png" class="sync">
+        </div>
+    </div>
+    <div class="login">
+        <div class="logo-container">
+            <img src="Logo.png">
+        </div>
+        <div class="main-section">
+            <div id="loginTab" data-tab-content class="active">
+                <h1>Log in</h1>
+                <form class="login-form" name="login">
+                    <input type="text" name="username" id="username" placeholder="Email or Id Number">
+                    <input type="password" name="password" id="password" placeholder="Password"><i class="fa-solid fa-eye" onclick="showPass()"></i>
+                    <p>Forgot Password?</p>
+                    <input type="button" value="Login" class="button" onclick="validate()">
+                </form>
+                <p>By clicking Continue, you agree to BPsync's <span>User Agreement</span>, and <span>Privacy
+                        Policy</span>.
+                </p>
+                <div class="bottom-part">
+                    <h3>New to BPsync? <span data-tab-target="#registerTab">Sign up</span></h3>
+                </div>
+            </div>
+            <div id="registerTab" data-tab-content>
+                <h1>Sign up</h1>
+                <form class="signup-form" name="register">
+                    <input type="email" name="username" id="username" placeholder="Email">
+                    <input type="text" name="id" id="id" placeholder="BPC Id Number">
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                    <input type="button" value="Sign up" class= "button" onclick="signup()">
+                </form>
+                <p>By clicking Continue, you agree to BPsync's <span>User Agreement</span>, and <span>Privacy
+                        Policy</span>.
+                </p>
+                <div class="bottom-part signup">
+                    <h3>Already have an account? <span data-tab-target="#loginTab">Login</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="login.js" defer></script>
+</body>
+
+</html>
