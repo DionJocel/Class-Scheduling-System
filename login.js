@@ -1,26 +1,51 @@
-const tabs = document.querySelectorAll('[data-tab-target]');
-const tabContents = document.querySelectorAll('[data-tab-content]');
+document.addEventListener('DOMContentLoaded', function () {
+    const tabLinks = document.querySelectorAll('[data-tab-target]');
+    const tabsContainer = document.querySelector('.main-section');
+    let isAnimating = false;
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        const target = document.querySelector(tab.dataset.tabTarget);
-        tabContents.forEach(tabContent => {
-            tabContent.classList.remove('active');
+    tabLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (isAnimating) return;
+            
+            const target = document.querySelector(link.dataset.tabTarget);
+            const currentActiveTab = document.querySelector('.tab.active');
+
+            if (target === currentActiveTab) return;
+
+            isAnimating = true;
+            
+            const isSignup = target.id === 'registerTab';
+            
+            target.classList.add(isSignup ? 'slide-in-right' : 'slide-in-left');
+            currentActiveTab.classList.add(isSignup ? 'slide-out-left' : 'slide-out-right');
+            
+            setTimeout(() => {
+                currentActiveTab.classList.remove('active', 'slide-out-left', 'slide-out-right');
+                target.classList.remove('slide-in-right', 'slide-in-left');
+                target.classList.add('active');
+                isAnimating = false;
+            }, 200);
         });
-        target.classList.add('active');
     });
 });
 
-function showPass() {
-    let pass = document.getElementById("password");
 
-    if (pass.type == "password") {
-        pass.type = "text";
-    }
-    else {
-        pass.type = "password";
+function showPass(event) {
+    const eyeIcon = event.target;
+    const passwordField = document.getElementById('password');
+    
+    if (passwordField.type == 'password') {
+        passwordField.type = 'text';
+        eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
     }
 }
+
+document.querySelectorAll('.fa-eye, .fa-eye-slash').forEach(icon => {
+    icon.addEventListener('click', showPass);
+});
 
 var attempts = 3;
 var usernameIdArray = ["SuperAdminMIS", "VPAA", "AdminStaff"];
@@ -84,7 +109,7 @@ function validate() {
 
 function signup() {
     var newUser = document.register.username.value;
-    var newUserId= document.register.id.value; 
+    var newUserId = document.register.id.value;
     var newPass = document.register.password.value;
     var confirmPass = document.register.confirmPassword.value;
     var validUser = false;

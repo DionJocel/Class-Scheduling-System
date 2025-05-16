@@ -4,9 +4,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
+}
+
+body {
+    height: 100dvh;
 }
 
 .logo-animation {
+    padding-right: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,7 +113,8 @@
     left: 0;
     opacity: 0;
     animation: appear 0.1s ease 6.5s forwards;
-    height: 100dvh;
+    height: 100%;
+    width: 100%;
 }
 
 .login {
@@ -143,7 +150,17 @@
     font-weight: 600;
     font-style: normal;
     font-size: 35px;
-    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.main-section p {
+    justify-self: center;
+    width: 90%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 13px;
+    margin-top: 10px;
 }
 
 form {
@@ -165,7 +182,7 @@ form input {
     font-size: 14px;
 }
 
-form p {
+.forgot {
     align-self: flex-start;
     margin: 5px 35px;
     color: #211A2A;
@@ -186,16 +203,6 @@ form input.button {
     border: none;
     background-color: #28AA1F;
     cursor: pointer;
-}
-
-.main-section p {
-    justify-self: center;
-    width: 90%;
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 13px;
-    margin-top: 10px;
 }
 
 .main-section span {
@@ -226,7 +233,7 @@ form input.button {
     cursor: pointer;
 }
 
-.signup h3{
+.signup h3 {
     font-size: 16px;
 }
 
@@ -238,11 +245,199 @@ form input.button {
     display: block;
 }
 
-.fa-eye {
+.fa-eye,
+.fa-eye-slash {
     position: relative;
     bottom: 22px;
     left: 135px;
     color: #656161;
     cursor: pointer;
     margin-bottom: -20px;
+}
+
+.fa-eye,
+.fa-eye-slash {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.fa-eye:hover,
+.fa-eye-slash:hover {
+    transform: scale(1.1);
+    color: #47444494;
+}
+
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.tab {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.tab.active {
+    position: relative;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.tab.slide-in-right {
+    animation: slideInFromRight 0.4s ease forwards;
+}
+
+.tab.slide-out-left {
+    animation: slideOutToLeft 0.4s ease forwards;
+}
+
+.tab.slide-in-left {
+    animation: slideInFromLeft 0.4s ease forwards;
+}
+
+.tab.slide-out-right {
+    animation: slideOutToRight 0.4s ease forwards;
+}
+
+@media only screen and (min-width: 1024px) {
+    .logo-container {
+        width: 250px;
+        height: 250px;
+        margin-top: 0px;
+    }
+
+    .main-section {
+        margin-top: -60px;
+    }
+
+    .main-section h1 {
+        justify-self: center;
+        font-size: 8dvh;
+        margin-left: 0px;
+        font-weight: 600;
+    }
+
+    form input {
+        width: 40%;
+        height: 7dvh;
+        margin-bottom: 14px;
+        font-size: 2dvh;
+    }
+
+    .forgot {
+        align-self: flex-start;
+        margin: -5dvh 55dvh;
+        font-size: 2dvh !important;
+        font-weight: 200;
+    }
+
+    form input.button {
+        margin-top: 10dvh;
+        width: 32%;
+        height: 9dvh;
+        font-size: 4.5dvh;
+        transition: 0.4s ease;
+    }
+
+    form input.button:hover {
+        background-color: #30b726;
+        transform: scale(1.05) translateY(-7px);
+        box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.685),
+            -10px -10px 10px rgba(255, 255, 255, 0.685), -10px 10px 10px rgba(255, 255, 255, 0.685),
+            10px -10px 10px rgba(255, 255, 255, 0.685);
+    }
+
+    .main-section p {
+        justify-self: center;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .claim {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    p.claim {
+        font-size: 1.8dvh;
+    }
+
+    .bottom-part {
+        bottom: 7%;
+    }
+
+    .bottom-part h3 {
+        font-size: 2dvh;
+    }
+
+    .signup h3 {
+        font-size: 2dvh;
+    }
+
+    .fa-eye,
+    .fa-eye-slash {
+        bottom: 6.5dvh;
+        left: 30dvh;
+        margin-bottom: -30px;
+        font-size: 3dvh;
+    }
+
+    .signup-form input {
+        width: 40%;
+        height: 5.5dvh;
+        margin-bottom: 4px;
+        font-size: 2dvh;
+    }
+
+    .signup-form .button {
+        margin-top: 3dvh;
+    }
 }
