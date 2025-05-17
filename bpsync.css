@@ -201,7 +201,7 @@
     }
 
     .tabs-container {
-        height: 75%;
+        height: 70dvh;
         width: 70%;
     }
 
@@ -219,7 +219,7 @@
     }
 
     .tabs-container {
-        height: 100%;
+        height: 62dvh;
         width: 100%;
     }
 
