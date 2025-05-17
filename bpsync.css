@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
     margin: 0;
@@ -18,7 +18,8 @@
     height: 100%;
     width: 100%;
     background: linear-gradient(to bottom, white 30%, #78ff6edb);
-    position: relative;
+    position: fixed;
+    overflow-y: auto;
 }
 
 .top-area {
@@ -34,7 +35,7 @@
 
 .fa-right-to-bracket {
     transform: rotate(180deg);
-} 
+}
 
 .default-view {
     display: flex;
@@ -168,7 +169,8 @@
     background: linear-gradient(to bottom, white 30%, #78ff6edb);
 }
 
-.tab h1 {  /* not final (sample only)*/
+.tab h1 {
+    /* not final (sample only)*/
     font-size: 24px;
     font-family: sans-serif;
     text-align: center;
@@ -185,6 +187,7 @@
     opacity: 1;
     transform: translateY(0);
 }
+
 .back-button {
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -192,6 +195,199 @@
 
 .back-button:hover {
     transform: translateX(-5px) rotate(180deg);
+}
+
+/* UPDATE DATA */
+
+.management-container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.management-section {
+    background: #ffffff;
+    padding: 15px;
+    flex: 1;
+    min-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #44444430;
+    animation: slideUp 0.6s ease-out 0.4s both;
+    animation-delay: 0.7s;
+}
+
+.top {
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.bottom {
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+.top-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-add h3 {
+    font-family: "Montagu Slab", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.add-new-btn {
+    padding: 10px 15px;
+    background: #28AA1F;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.add-new-btn:hover {
+    background: #71d50d;
+}
+
+.item-list {
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.item-list div {
+    padding: 8px;
+    background: white;
+    margin-bottom: 5px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content {
+    animation: slideUp 0.6s ease-out 0.1s both;
+    display: flex;
+    flex-direction: column;
+    background: #22ff00cc;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 270px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-content h3 {
+    color: white;
+    align-self: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    align-self: flex-end;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 18px;
+    border: 1px solid #44444455;
+    height: 40px;
+    margin-bottom: 10px;
+    text-indent: 5px;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+    accent-color: #a3bef8;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 12px;
+    color: white;
+}
+
+.radio-group {
+    display: flex;
+    gap: 30px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px;
+    color: white;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+}
+
+.submit-btn {
+    padding: 10px 15px;
+    background: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 50px;
+    align-self: center;
+}
+
+span.fac-name {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 19px;
+}
+
+span.fac-head {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+span.shift {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(100, 98, 98);
 }
 
 @media only screen and (min-width: 768px) {
@@ -209,6 +405,11 @@
         width: 20dvh;
         height: 28dvh;
         font-size: 2.4dvh;
+    }
+    /* Update Data */
+    .management-section {
+        flex: 1;
+        min-width: 40dvh;
     }
 }
 
@@ -260,7 +461,87 @@
         font-size: 2.7dvh;
     }
 
-    .button:hover .fa-solid{
+    .button:hover .fa-solid {
         font-size: 14.5dvh;
+    }
+
+    /* Update Data*/
+    .management-section {
+        flex: 1;
+        min-width: 120dvh;
+    }
+
+    .top-add h3 {
+        font-size: 2.2dvh;
+    }
+
+    .add-new-btn {
+        width: 20dvh;
+        height: 5dvh;
+        border-radius: 20dvh;
+        font-size: 1.5dvh;
+        transition: 0.4s ease;
+    }
+
+    .add-new-btn:hover {
+        background: #71d50d;
+        scale: 1.05;
+    }
+
+    .overlay-content {
+        border-radius: 3dvh;
+        min-width: 87dvh;
+        min-height: 55dvh;
+    }
+
+    .overlay-content h3 {
+        font-size: 2.9dvh;
+    }
+
+    .close-btn {
+        font-size: 4dvh;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-group input[type="text"] {
+        width: 60%;
+        height: 5dvh;
+        border-radius: 20dvh;
+        font-size: 1.8dvh;
+        text-indent: 2dvh;
+    }
+
+    .radio-group {
+        font-size: 1.6dvh;
+    }
+
+    .checkbox-group {
+        font-size: 1.3dvh;
+    }
+
+    .submit-btn {
+        font-size: 2dvh;
+        width: 30dvh;
+        height: 6.5dvh;
+        border-radius: 50dvh;
+    }
+
+    span.fac-name {
+        font-size: 2.4dvh;
+    }
+
+    span.fac-head {
+        font-size: 1.8dvh;
+    }
+
+    span.shift {
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 2dvh;
     }
 }

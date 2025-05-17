@@ -84,9 +84,84 @@
                 <div class="logo-container">
                     <img src="Logo.png">
                 </div>
-                <h1>Update Data blabla</h1>
+
+                <div class="management-container">
+                    <div class="management-section top">
+                        <div class="top-add">
+                            <h3>Faculties</h3>
+                            <button class="add-new-btn" onclick="showFacultyForm()">Add New Faculty</button>
+                        </div>
+                        <div id="facultyList" class="item-list"></div>
+                    </div>
+                    <div class="management-section">
+                        <div class="top-add">
+                            <h3>Sections</h3>
+                            <button class="add-new-btn" onclick="showSectionForm()">Add New Section</button>
+                        </div>
+                        <div id="sectionList" class="item-list"></div>
+                    </div>
+                    <div class="management-section bottom">
+                        <div class="top-add">
+                            <h3>Rooms</h3>
+                            <button class="add-new-btn" onclick="showRoomForm()">Add New Room</button>
+                        </div>
+                        <div id="roomList" class="item-list"></div>
+                    </div>
+                </div>
             </div>
 
+            <div id="facultyOverlay" class="overlay">
+                <div class="overlay-content">
+                    <span class="close-btn" onclick="hideFacultyForm()">&times;</span>
+                    <h3>Add New Faculty</h3>
+                    <div class="form-group">
+                        <input type="text" id="facultyName" placeholder="Enter faculty name">
+                        <input type="text" id="facultyHead" placeholder="Enter faculty head">
+                    </div>
+                    <div class="form-group">
+                        <div class="radio-group">
+                            <label><input type="radio" name="employmentType" id="fullTime"
+                                    onchange="handleEmploymentTypeChange()"> Full Time</label>
+                            <label><input type="radio" name="employmentType" id="partTime"
+                                    onchange="handleEmploymentTypeChange()"> Part Time</label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="shiftGroup">
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="amShift" onclick="handleShiftSelection('amShift')">
+                                AM</label>
+                            <label><input type="checkbox" id="pmShift" onclick="handleShiftSelection('pmShift')">
+                                PM</label>
+                        </div>
+                    </div>
+                    <button class="submit-btn" onclick="addFaculty()">Save</button>
+                </div>
+            </div>
+
+            <div id="sectionOverlay" class="overlay">
+                <div class="overlay-content">
+                    <span class="close-btn" onclick="hideSectionForm()">&times;</span>
+                    <h3>Add New Section</h3>
+                    <div class="form-group">
+                        <input type="text" id="sectionName" placeholder="Enter section name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="adviserName" placeholder="Enter adviser name">
+                    </div>
+                    <button class="submit-btn" onclick="addSection()">Add Section</button>
+                </div>
+            </div>
+
+            <div id="roomOverlay" class="overlay">
+                <div class="overlay-content">
+                    <span class="close-btn" onclick="hideRoomForm()">&times;</span>
+                    <h3>Add New Room</h3>
+                    <div class="form-group">
+                        <input type="text" id="roomName" placeholder="Enter room name">
+                    </div>
+                    <button class="submit-btn" onclick="addRoom()">Add Room</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="bpsync.js"></script>
