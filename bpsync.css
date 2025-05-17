@@ -546,11 +546,10 @@ span.shift {
     }
 }
 
-/* --- Sidebar Styles --- */
 .settings-sidebar {
     position: fixed;
     top: 0;
-    left: -350px; /* Hide sidebar by default */
+    left: -350px; 
     width: 350px;
     height: 100vh;
     background-color: #fff9f5;
