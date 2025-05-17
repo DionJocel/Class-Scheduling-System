@@ -1,8 +1,3 @@
-<!-- Functions Nalangs Kulang 
-Also pa check if working sya 
--russel -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -215,6 +210,80 @@ input:checked + .slider:before {
   height: 20px;
   margin-left: 8px;
 }
+
+.import-overlay {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20vw;
+    height: 40vh;
+    padding: 2vh;
+    border-radius: 5vh;
+    background-color: #37ED1B;
+    z-index: 999;
+}
+
+.import-overlay.active {
+    display: block;
+}
+
+.import-overlay-top {
+    display: flex;
+}
+
+.import-overlay-top h3 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    flex: 1;
+    margin-left: 2vw;
+    font-weight: bolder;
+}
+
+.close-import {
+    font-size: 3rem;
+    font-weight: bolder;
+    color: black;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.import-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.row1-import{
+    margin-bottom: 3vh;
+}
+.row1-import, .row2-import {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1vh;
+    gap: 2vh;
+}
+
+.row1-import button, .row2-import button {
+    background-color: #fff;
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    border: none;
+    border-radius: 80px;
+    cursor: pointer;
+    width: 9vw;
+    height: 8vh;
+    transition: background 0.2s;
+}
+
+.row1-import button:hover, .row2-import button:hover {
+    background-color: green;
+    color: white;
+}
+
 @media (max-width: 900px) {
     .settings-sidebar {
         width: 80vw;
@@ -263,19 +332,20 @@ input:checked + .slider:before {
             </div>
             <br>
             <div class="sidebar-content">
-            <!--LIGHT/DARK SWITCH  -->
+
+            <!--LIGHT/DARK SWITCH :) -->
             <div class="switch-row">
             <label class="switch-light-dark">
-            <input type="checkbox">
+            <input type="checkbox" id="switch-light-dark">
             <span class="slider round"></span>
             </label>
             <span class="switch-label">Switch To Dark Mode</span>
             </div>
             <br>
-            <!-- ALLOW NOTIFICATION -->
+            <!-- ALLOW NOTIFICATION HAHA NOPE-->
             <div class="switch-row">
             <label class="switch-notification">
-            <input type="checkbox">
+            <input type="checkbox" id="switch-notification">
             <span class="slider round"></span>
             </label>
             <span class="switch-label">Allow Notifications</span>
@@ -283,7 +353,7 @@ input:checked + .slider:before {
             <br>
             <!--Import button-->
             <div class="import-button">
-            <button>Import<img src="import-icon.png"></button>
+            <button id="openImportOverlay">Import<img src="import-icon.png"></button>
             </div>
 
                 <div class="sidebar-links">
@@ -294,6 +364,43 @@ input:checked + .slider:before {
             </div>
         </div>
 
+        <!--IMPORT OVERLAY-->
+        <div class="import-overlay" id="importOverlay">
+        <div class="import-overlay-top">
+        <h3>Import</h3>
+        <span class="close-import" id="closeImportOverlay">&times;</span>
+        </div>
+
+        <div class="import-content">
+        <!--FIRST ROW-->
+        <div class="row1-import">
+        <div class="faculty-import">
+        <input type="file" name="facultyCsv" id="facultyCsv" accept=".csv" style="display:none;">
+        <button type="button" onclick="document.getElementById('facultyCsv').click()">Faculty</button>
+        </div>
+        <div class="section-import">
+        <input type="file" name="sectionCsv" id="sectionCsv" accept=".csv" style="display:none;">
+        <button type="button" onclick="document.getElementById('sectionCsv').click();">Section</button>
+        </div>
+        </div>
+        <br>
+
+        <!--SECOND ROW-->
+        <div class="row2-import">
+        <div class="room-import">
+        <input type="file" name="roomCsv" id="roomCsv" accept=".csv" style="display:none;">
+        <button type="button" onclick="document.getElementById('roomCsv').click();">Room<br>Facility</button>
+        </div>
+
+        <div class="subject-import">
+        <input type="file" name="subjectCsv" id="subjectCsv" accept=".csv" style="display:none;">
+        <button type="button" onclick="document.getElementById('subjectCsv').click();">Subjects</button>
+        </div>
+        </div>
+        </div>
+        
+        </div>
+
 
         <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -301,6 +408,9 @@ input:checked + .slider:before {
     const closeSidebar = document.getElementById('closeSidebar');
     const logoutBtn = document.getElementById('logoutBtn');
     const SettingIconBtn = document.getElementById('settingIcon');
+    const openImportOverlayBtn = document.getElementById('openImportOverlay');
+    const importOverlay = document.getElementById('importOverlay');
+    const closeImportOverlay = document.getElementById('closeImportOverlay');
 
     if (SettingIconBtn) {
         SettingIconBtn.addEventListener('click', function() {
@@ -311,6 +421,17 @@ input:checked + .slider:before {
     if (closeSidebar) {
         closeSidebar.addEventListener('click', function() {
             settingSidebar.classList.remove('active');
+        });
+    }
+
+    if (openImportOverlayBtn && importOverlay) {
+        openImportOverlayBtn.addEventListener('click', function() {
+            importOverlay.classList.add('active');
+        });
+    }
+    if (closeImportOverlay && importOverlay) {
+        closeImportOverlay.addEventListener('click', function() {
+            importOverlay.classList.remove('active');
         });
     }
 
