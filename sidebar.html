@@ -215,6 +215,41 @@ input:checked + .slider:before {
   height: 20px;
   margin-left: 8px;
 }
+@media (max-width: 900px) {
+    .settings-sidebar {
+        width: 80vw;
+        left: -100vw;
+    }
+    .settings-sidebar.active {
+        left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+        .settings-sidebar {
+            width: 50vw;
+            left: -100vw;
+            border-left: none;
+            border-top: 1px solid #f0d6d6;
+            top: 0;
+        }
+        .settings-sidebar.active {
+            left: 0;
+        }
+        .sidebar-header {
+            padding: 15px;
+        }
+        .sidebar-content {
+            padding: 10px;
+        }
+        .import-button button {
+            width: 50%;
+            justify-content: center;
+        }
+        .logout-btn {
+            font-size: 16px;
+        }
+    }
     </style>
 </head>
 <body>
