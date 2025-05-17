@@ -171,3 +171,43 @@ window.onclick = function (event) {
         });
     }
 }
+   document.addEventListener('DOMContentLoaded', function() {
+    const settingSidebar = document.getElementById('settingSidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const SettingIconBtn = document.getElementById('settingIcon');
+    const openImportOverlayBtn = document.getElementById('openImportOverlay');
+    const importOverlay = document.getElementById('importOverlay');
+    const closeImportOverlay = document.getElementById('closeImportOverlay');
+
+    if (SettingIconBtn) {
+        SettingIconBtn.addEventListener('click', function() {
+            settingSidebar.classList.toggle('active');
+        });
+    }
+
+    if (closeSidebar) {
+        closeSidebar.addEventListener('click', function() {
+            settingSidebar.classList.remove('active');
+        });
+    }
+
+    if (openImportOverlayBtn && importOverlay) {
+        openImportOverlayBtn.addEventListener('click', function() {
+            importOverlay.classList.add('active');
+        });
+    }
+    if (closeImportOverlay && importOverlay) {
+        closeImportOverlay.addEventListener('click', function() {
+            importOverlay.classList.remove('active');
+        });
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            alert('Logged out successfully');
+           //window.location.href = "somewhere only we know !!!";
+        });
+    }
+
+});
