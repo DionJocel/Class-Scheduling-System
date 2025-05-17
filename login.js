@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <h3>The school may update this Agreement. Users will be notified of significant changes. Continued use implies acceptance.</h3>
             <p>For questions or concerns, contact: <br>
-            BPC Faculty Head Sir Paulo Victoria / BSIS Department <br>
+            <span>BPC Faculty Head Sir Paulo Victoria / BSIS Department</span> <br>
             (Email niya dito / Phone Number dito) <br> <br>
 
             By using the BPC Class Scheduling System, you acknowledge that you have read, understood, and agreed to this User Agreement and Privacy Policy.</p>
@@ -171,18 +171,35 @@ function validate() {
                 valid = false;
             }
         }
-        if (valid == true && attempts > 0) {
+
+         if (valid == true && attempts > 0) {
             let code = Math.floor(Math.random() * 899999) + 100000;
-            let codeAttempt = prompt('Enter this 6 digit authentication code to continue: ' + code);
+            const codeGeneratedTime = Date.now();
+
+            let codeAttempt = prompt('Enter this 6-digit authentication code (valid for 20 seconds): ' + code);
+            
+            if (codeAttempt == null) {
+                alert("You cancelled the authentication.");
+                return false;
+            }
+
+            const currentTime = Date.now();
+            const timeElapsed = (currentTime - codeGeneratedTime) / 1000;
+
+            if (timeElapsed > 20) {
+                alert("Authentication code expired. Please try logging in again.");
+                return false;
+            }
+
             if (codeAttempt == code) {
                 alert("Login Successful");
                 window.location.href = "bpsync.html";
                 return false;
-            }
-            else {
-                alert('Wrong code try again.');
+            } else {
+                alert('Wrong code. Try again.');
             }
         }
+
         if (valid == false) {
             if (attempts >= 1) {
                 attempts--;

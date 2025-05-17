@@ -1,26 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="bpsync.css">
     <title>BPsync</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            width: 100dvh;
-            height: 100dvh;
-            background: url('https://i.pinimg.com/236x/2e/27/12/2e2712ae6448f91fcd3c0aa306bc39a1.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
+
     </style>
 </head>
-<body>
 
+<body>
+    <div class="main">
+        <div class="main-section">
+            <!-- Default View -->
+            <div class="default-view active" data-tab-content>
+                <div class="top-area">
+                    <i class="fa-solid fa-gear"></i>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="logo-container">
+                    <img src="Logo.png">
+                </div>
+                <div class="tabs-container">
+                    <div class="buttons-container">
+                        <div class="button" data-tab-target="#generateTab">
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                            <h2>Generate Schedules</h2>
+                        </div>
+                        <div class="button" data-tab-target="#monitorTab">
+                            <i class="fa-solid fa-desktop"></i>
+                            <h2>Monitor Rooms</h2>
+                        </div>
+                        <div class="button" data-tab-target="#checkTab">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <h2>Check Schedules</h2>
+                        </div>
+                        <div class="button" data-tab-target="#updateTab">
+                            <i class="fa-solid fa-wifi"></i>
+                            <h2>Update Data</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div id="generateTab" class="tab" data-tab-content>
+                <div class="top-area">
+                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
+                </div>
+                <div class="logo-container">
+                    <img src="Logo.png">
+                </div>
+                <h1>Generate Schedules blabla</h1>
+            </div>
+
+            <div id="monitorTab" class="tab" data-tab-content>
+                <div class="top-area">
+                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
+                </div>
+                <div class="logo-container">
+                    <img src="Logo.png">
+                </div>
+                <h1>Monitor Rooms blabla</h1>
+            </div>
+
+            <div id="checkTab" class="tab" data-tab-content>
+                <div class="top-area">
+                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
+                </div>
+                <div class="logo-container">
+                    <img src="Logo.png">
+                </div>
+                <h1>Check Schedules blabla</h1>
+            </div>
+
+            <div id="updateTab" class="tab" data-tab-content>
+                <div class="top-area">
+                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
+                </div>
+                <div class="logo-container">
+                    <img src="Logo.png">
+                </div>
+                <h1>Update Data blabla</h1>
+            </div>
+
+        </div>
+    </div>
+    <script src="bpsync.js"></script>
 </body>
+
 </html>

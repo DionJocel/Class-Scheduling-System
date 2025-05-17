@@ -402,6 +402,11 @@ form input.button {
     margin-bottom: 10px;
 }
 
+#policyContent span {
+    color: #28AA1F;
+    font-weight: bold;
+}
+
 @media only screen and (min-width: 768px) {
     .logo-container {
         width: 250px;

@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    height: 100dvh;
+    width: 100%;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, white 30%, #78ff6edb);
+    position: relative;
+}
+
+.top-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    animation: slideUp 0.6s ease-out 0.3s both;
+}
+
+.fa-solid {
+    font-size: 4dvh;
+}
+
+.fa-right-to-bracket {
+    transform: rotate(180deg);
+} 
+
+.default-view {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-container {
+    height: 80px;
+    width: 130px;
+    align-self: center;
+    margin-top: 10px;
+    animation: slideUp 0.6s ease-out 0.4s both;
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tabs-container {
+    width: 90%;
+    height: 65dvh;
+    align-self: center;
+    animation: slideUp 0.6s ease-out 0.5s both;
+}
+
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.buttons-container .button {
+    opacity: 0;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+.button {
+    background-color: white;
+    width: 130px;
+    height: 180px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.505);
+    color: #28AA1F;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2dvh;
+    text-align: center;
+}
+
+.button .fa-solid {
+    font-size: 9dvh;
+}
+
+.button:nth-of-type(1) .fa-solid {
+    text-indent: 12px;
+}
+
+.button:nth-of-type(2),
+.button:nth-of-type(3) {
+    background-color: #28AA1F;
+}
+
+.button:nth-of-type(2) h2,
+.button:nth-of-type(3) h2 {
+    color: white;
+}
+
+.button:nth-of-type(2) .fa-solid,
+.button:nth-of-type(3) .fa-solid {
+    color: white;
+}
+
+.button:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+.button:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.button:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.button:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    background: linear-gradient(to bottom, white 30%, #78ff6edb);
+}
+
+.tab h1 {  /* not final (sample only)*/
+    font-size: 24px;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    animation: slideUp 0.6s ease-out 0.4s both;
+}
+
+.default-view:not(.active) {
+    display: none;
+}
+
+.tab.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+.back-button {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateX(-5px) rotate(180deg);
+}
+
+@media only screen and (min-width: 768px) {
+    .logo-container {
+        width: 25dvh;
+        height: 15dvh;
+    }
+
+    .tabs-container {
+        height: 75%;
+        width: 70%;
+    }
+
+    .button {
+        width: 20dvh;
+        height: 28dvh;
+        font-size: 2.4dvh;
+    }
+}
+
+@media only screen and (min-width: 1020px) {
+    .logo-container {
+        width: 30dvh;
+        height: 20dvh;
+    }
+
+    .tabs-container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .top-area {
+        padding: 5dvh 5dvh;
+    }
+
+    .fa-gear,
+    .fa-user {
+        cursor: pointer;
+        transition: all 0.4s ease;
+    }
+
+    .fa-gear:hover,
+    .fa-user:hover {
+        color: rgba(0, 0, 0, 0.596);
+        scale: 1.1;
+    }
+
+    .button {
+        width: 28dvh;
+        height: 38dvh;
+        font-size: 2.5dvh;
+        border-radius: 2dvh;
+        box-shadow: 0px 0px 2dvh rgba(0, 0, 0, 0.505);
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+    .button .fa-solid {
+        font-size: 12dvh;
+        transition: all 0.4s ease;
+    }
+
+    .button:hover {
+        width: 30dvh;
+        height: 40dvh;
+        font-size: 2.7dvh;
+    }
+
+    .button:hover .fa-solid{
+        font-size: 14.5dvh;
+    }
+}
