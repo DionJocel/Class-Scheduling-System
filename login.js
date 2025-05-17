@@ -104,6 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const policyType = link.textContent.includes('User Agreement') ? 'userAgreement' : 'privacyPolicy';
             policyContent.innerHTML = policies[policyType];
             modal.style.display = 'flex';
+            modal.scrollTop = 0;
+            document.querySelector('.modal-content').scrollTop = 0;
         });
     });
 
