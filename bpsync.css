@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background: linear-gradient(to bottom, white 30%, #78ff6edb);
+}
+
 .main {
     height: 100dvh;
     width: 100%;
@@ -17,7 +21,6 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background: linear-gradient(to bottom, white 30%, #78ff6edb);
     position: fixed;
     overflow-y: auto;
 }
@@ -166,7 +169,6 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    background: linear-gradient(to bottom, white 30%, #78ff6edb);
 }
 
 .tab h1 {
@@ -926,7 +928,7 @@ input:checked + .slider:after {
     opacity: 1;
 }
 
-.dark-mode .main-section {
+body.dark-mode {
     background: linear-gradient(to bottom, #211A2A 30%, #705890);
 }
 
@@ -966,10 +968,6 @@ input:checked + .slider:after {
 .dark-mode .button:nth-of-type(2) .fa-solid,
 .dark-mode .button:nth-of-type(3) .fa-solid {
     color: black;
-}
-
-.dark-mode .tab {
-    background: linear-gradient(to bottom, #211A2A 30%, #705890);
 }
 
 .dark-mode .tab h1 {
