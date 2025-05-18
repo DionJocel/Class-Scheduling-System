@@ -412,6 +412,11 @@ span.shift {
     background-color: white;
 }
 
+.room-item .remove-btn,
+.room-item .edit-btn {
+    transform: translateY(-6dvh);
+}
+
 .faculty-item,
 .section-item,
 .room-item {
@@ -896,4 +901,137 @@ input:checked+.slider:before {
         width: 80vw;
         font-size: 0.95rem;
     }
+}
+
+
+
+
+
+/*        DARK MODE STYLES NASA BABA PARA MADALI HANAPIN    */
+/*          ADD (.dark-mode) SA UNAHAN NG MGA SELECTOR      */ 
+
+.slider:after {
+    content: "☀️";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 14px;
+    opacity: 0;
+    transition: .4s;
+}
+
+input:checked + .slider:after {
+    content: "🌙";
+    left: 35px;
+    opacity: 1;
+}
+
+.dark-mode .main-section {
+    background: linear-gradient(to bottom, #211A2A 30%, #705890);
+}
+
+.dark-mode .fa-user,
+.dark-mode .fa-gear {
+    color: white;
+}
+
+.dark-mode-logo {
+    display: none;
+}
+
+.dark-mode .dark-mode-logo {
+    display: flex;
+}
+
+.dark-mode .light-mode-logo {
+    display: none;
+}
+
+.dark-mode .button {
+    background-color: #211A2A;
+    box-shadow: 0px 0px 10px #FFFFFF;
+    color: #8DD737;
+}
+
+.dark-mode .button:nth-of-type(2),
+.dark-mode .button:nth-of-type(3) {
+    background-color: #8DD737;
+}
+
+.dark-mode .button:nth-of-type(2) h2,
+.dark-mode .button:nth-of-type(3) h2 {
+    color: black;
+}
+
+.dark-mode .button:nth-of-type(2) .fa-solid,
+.dark-mode .button:nth-of-type(3) .fa-solid {
+    color: black;
+}
+
+.dark-mode .tab {
+    background: linear-gradient(to bottom, #211A2A 30%, #705890);
+}
+
+.dark-mode .tab h1 {
+    color: white;
+}
+
+.dark-mode .back-button {
+    color: white;
+}
+
+.dark-mode .management-section {
+    background: #211A2A;
+    box-shadow: 0 0px 7px rgba(255, 255, 255, 0.1);
+    border: 1px solid #b4a6a630;
+}
+
+.dark-mode .top-add h3 {
+    color: white;
+}
+
+.dark-mode .add-new-btn {
+    background: #8DD737;
+    color: black;
+}
+
+.dark-mode .add-new-btn:hover {
+    background: rgb(128, 255, 0);
+}
+
+.dark-mode .item-list div {
+    background: #211A2A;
+}
+
+.dark-mode .fac-name {
+    color: white;
+}
+
+.dark-mode span.fac-head {
+    color: white;
+}
+
+.dark-mode span.shift {
+    color: rgba(255, 255, 255, 0.498);
+}
+
+.dark-mode .edit-btn,
+.dark-mode .remove-btn {
+    color: white;
+    background-color: #211A2A;
+}
+
+.dark-mode .faculty-item,
+.dark-mode .section-item,
+.dark-mode .room-item {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.dark-mode .overlay-content {
+    background: #35224C;
 }

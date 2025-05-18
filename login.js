@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const tabLinks = document.querySelectorAll('[data-tab-target]');
     const tabsContainer = document.querySelector('.main-section');
     let isAnimating = false;
+    let hasAcceptedPolicy = false;
+    let currentPolicyType = null;
 
     tabLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -27,12 +29,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 200);
         });
     });
+
     const modal = document.getElementById('policyModal');
     const closeBtn = document.querySelector('.close');
     const policyContent = document.getElementById('policyContent');
     const policyLinks = document.querySelectorAll('.claim span');
+    const acceptPolicyBtn = document.getElementById('acceptPolicyBtn');
+    const policyCheckbox = document.getElementById('policyCheckbox');
+    const policyCheckboxSignup = document.getElementById('policyCheckboxSignup');
 
-    // policy content ilalagay dito
+    // policy content
     const policies = {
         userAgreement: `
             <h2>BPsync User Agreement</h2>
@@ -101,12 +107,22 @@ document.addEventListener('DOMContentLoaded', function () {
     policyLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const policyType = link.textContent.includes('User Agreement') ? 'userAgreement' : 'privacyPolicy';
-            policyContent.innerHTML = policies[policyType];
+            currentPolicyType = link.textContent.includes('User Agreement') ? 'userAgreement' : 'privacyPolicy';
+            policyContent.innerHTML = policies[currentPolicyType];
             modal.style.display = 'flex';
             modal.scrollTop = 0;
             document.querySelector('.modal-content').scrollTop = 0;
         });
+    });
+
+    acceptPolicyBtn.addEventListener('click', () => {
+        hasAcceptedPolicy = true;
+        if (currentPolicyType === 'userAgreement') {
+            policyCheckbox.checked = true;
+        } else {
+            policyCheckboxSignup.checked = true;
+        }
+        modal.style.display = 'none';
     });
 
     closeBtn.addEventListener('click', () => {
@@ -145,6 +161,13 @@ var passwordArray = ["@bpconlypass01", "@bpconlypass01", "@bpconlypass01"];
 var valid = false;
 
 function validate() {
+    const policyCheckbox = document.getElementById('policyCheckbox');
+    
+    if (!policyCheckbox.checked) {
+        alert('Please read and accept the User Agreement and Privacy Policy before logging in.');
+        return false;
+    }
+
     var user = document.login.username.value;
     var password = document.login.password.value;
 
@@ -216,6 +239,13 @@ function validate() {
 }
 
 function signup() {
+    const policyCheckbox = document.getElementById('policyCheckboxSignup');
+    
+    if (!policyCheckbox.checked) {
+        alert('Please read and accept the User Agreement and Privacy Policy before signing up.');
+        return false;
+    }
+
     var newUser = document.register.username.value;
     var newUserId = document.register.id.value;
     var newPass = document.register.password.value;

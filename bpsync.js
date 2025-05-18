@@ -290,3 +290,50 @@ window.onclick = function (event) {
         });
     }
 }
+
+// DARK MODE SHEESH 
+
+const darkModeToggle = document.getElementById('switch-light-dark');
+
+// check localstorage saved user preference
+if (localStorage.getItem('darkMode') === 'enabled') {
+    enableDarkMode();
+    darkModeToggle.checked = true;
+}
+
+// mismong toggle dark mode function
+darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+});
+
+function enableDarkMode() {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('darkMode', 'enabled');
+}
+
+function disableDarkMode() {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('darkMode', 'disabled');
+}
+
+// optional lang to for system preference detection
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('darkMode')) {
+    enableDarkMode();
+    darkModeToggle.checked = true;
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('darkMode')) {
+        if (e.matches) {
+            enableDarkMode();
+            darkModeToggle.checked = true;
+        } else {
+            disableDarkMode();
+            darkModeToggle.checked = false;
+        }
+    }
+});

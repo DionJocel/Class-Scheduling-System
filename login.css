@@ -407,7 +407,125 @@ form input.button {
     font-weight: bold;
 }
 
+.accept-button {
+    height: 5dvh;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    margin-top: 20px;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.8dvh;
+}
+
+.accept-button:hover {
+    background-color: rgba(0, 0, 0, 0.128);
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 768px) {
+    .logo-container {
+        width: 250px;
+        height: 250px;
+        margin-top: 0px;
+    }
+
+    .main-section {
+        margin-top: -60px;
+    }
+
+    .main-section h1 {
+        justify-self: center;
+        font-size: 8dvh;
+        margin-left: 0px;
+        font-weight: 600;
+    }
+
+    form input {
+        width: 70%;
+        height: 7dvh;
+        margin-bottom: 14px;
+        font-size: 2dvh;
+    }
+
+    .forgot {
+        align-self: flex-start;
+        margin: -5dvh 15dvh;
+        font-size: 2dvh !important;
+        font-weight: 200;
+    }
+
+    form input.button {
+        margin-top: 10dvh;
+        width: 50%;
+        height: 9dvh;
+        font-size: 4.5dvh;
+        transition: 0.4s ease;
+    }
+
+    form input.button:hover {
+        background-color: #30b726;
+        transform: scale(1.05) translateY(-7px);
+        box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.685),
+            -10px -10px 10px rgba(255, 255, 255, 0.685), -10px 10px 10px rgba(255, 255, 255, 0.685),
+            10px -10px 10px rgba(255, 255, 255, 0.685);
+    }
+
+    .main-section p {
+        justify-self: center;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .claim {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    p.claim {
+        font-size: 1.8dvh;
+    }
+
+    .bottom-part {
+        bottom: 7%;
+    }
+
+    .bottom-part h3 {
+        font-size: 2dvh;
+    }
+
+    .signup h3 {
+        font-size: 2dvh;
+    }
+
+    .fa-eye,
+    .fa-eye-slash {
+        bottom: 6.5dvh;
+        left: 20dvh;
+        margin-bottom: -30px;
+        font-size: 3dvh;
+    }
+
+    .signup-form input {
+        width: 70%;
+        height: 5.5dvh;
+        margin-bottom: 4px;
+        font-size: 2dvh;
+    }
+
+    .signup-form .button {
+        margin-top: 3dvh;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 10% auto;
+    }
+}
+
+@media only screen and (min-width: 1020px) {
     .logo-container {
         width: 250px;
         height: 250px;
@@ -502,6 +620,7 @@ form input.button {
     .signup-form .button {
         margin-top: 3dvh;
     }
+
     .modal-content {
         width: 90%;
         margin: 10% auto;
