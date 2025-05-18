@@ -17,6 +17,46 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // SIDEBAR 
+
+    const settingSidebar = document.getElementById('settingSidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const SettingIconBtn = document.getElementById('settingIcon');
+    const openImportOverlayBtn = document.getElementById('openImportOverlay');
+    const importOverlay = document.getElementById('importOverlay');
+    const closeImportOverlay = document.getElementById('closeImportOverlay');
+
+    if (SettingIconBtn) {
+        SettingIconBtn.addEventListener('click', function() {
+            settingSidebar.classList.toggle('active');
+        });
+    }
+
+    if (closeSidebar) {
+        closeSidebar.addEventListener('click', function() {
+            settingSidebar.classList.remove('active');
+        });
+    }
+
+    if (openImportOverlayBtn && importOverlay) {
+        openImportOverlayBtn.addEventListener('click', function() {
+            importOverlay.classList.add('active');
+        });
+    }
+    if (closeImportOverlay && importOverlay) {
+        closeImportOverlay.addEventListener('click', function() {
+            importOverlay.classList.remove('active');
+        });
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            alert('Logged out successfully');
+           window.location.href = 'index.html';
+        });
+    }
 });
 
 // Update Data !!!
@@ -91,10 +131,14 @@ function addFaculty() {
     const facultyItem = document.createElement('div');
     facultyItem.className = 'faculty-item';
     facultyItem.innerHTML = `
-        <span class="fac-name"> • ${name} </span><br>
-        <span class="fac-head">• Faculty Head: ${head} </span><br>
-        <span class="shift">${type} (${shift})</span>
-    `;
+                <span class="fac-name"> • ${name} </span><br>
+                <span class="fac-head">• Faculty Head: ${head} </span><br>
+                <span class="shift">${type} (${shift})</span>
+                <div class="item-actions">
+                    <button class="edit-btn" onclick="editFaculty(this)"><i class="fas fa-edit"></i></button>
+                    <button class="remove-btn" onclick="removeItem(this)"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
     facultyList.appendChild(facultyItem);
 
     document.getElementById('facultyName').value = '';
@@ -108,6 +152,39 @@ function addFaculty() {
     document.getElementById('shiftGroup').style.opacity = '1';
 
     hideFacultyForm();
+}
+
+function editFaculty(button) {
+    const item = button.closest('.faculty-item');
+    const name = item.querySelector('.fac-name').textContent.replace('•', '').trim();
+    const head = item.querySelector('.fac-head').textContent.replace('• Faculty Head:', '').trim();
+    const shiftText = item.querySelector('.shift').textContent;
+
+    const isFullTime = shiftText.includes('Full Time');
+    const isAM = shiftText.includes('AM');
+    const isPM = shiftText.includes('PM');
+
+    document.getElementById('facultyName').value = name;
+    document.getElementById('facultyHead').value = head;
+
+    if (isFullTime) {
+        document.getElementById('fullTime').checked = true;
+        document.getElementById('amShift').checked = true;
+        document.getElementById('pmShift').checked = true;
+        document.getElementById('amShift').disabled = true;
+        document.getElementById('pmShift').disabled = true;
+        document.getElementById('shiftGroup').style.opacity = '0.7';
+    } else {
+        document.getElementById('partTime').checked = true;
+        document.getElementById('amShift').checked = isAM;
+        document.getElementById('pmShift').checked = isPM;
+        document.getElementById('amShift').disabled = false;
+        document.getElementById('pmShift').disabled = false;
+        document.getElementById('shiftGroup').style.opacity = '1';
+    }
+
+    item.remove();
+    showFacultyForm();
 }
 
 function showSectionForm() {
@@ -129,14 +206,32 @@ function addSection() {
 
     const sectionList = document.getElementById('sectionList');
     const sectionItem = document.createElement('div');
+    sectionItem.className = 'section-item';
     sectionItem.innerHTML = `
-    <span class="fac-name">• ${name} </span><br>
-    <span class="fac-head">• Section adviser: ${adviser}</span>`;
+                <span class="fac-name">• ${name} </span><br>
+                <span class="fac-head">• Section adviser: ${adviser}</span>
+                <div class="item-actions">
+                    <button class="edit-btn" onclick="editSection(this)"><i class="fas fa-edit"></i></button>
+                    <button class="remove-btn" onclick="removeItem(this)"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
     sectionList.appendChild(sectionItem);
 
     document.getElementById('sectionName').value = '';
     document.getElementById('adviserName').value = '';
     hideSectionForm();
+}
+
+function editSection(button) {
+    const item = button.closest('.section-item');
+    const name = item.querySelector('.fac-name').textContent.replace('•', '').trim();
+    const adviser = item.querySelector('.fac-head').textContent.replace('• Section adviser:', '').trim();
+
+    document.getElementById('sectionName').value = name;
+    document.getElementById('adviserName').value = adviser;
+
+    item.remove();
+    showSectionForm();
 }
 
 function showRoomForm() {
@@ -157,11 +252,35 @@ function addRoom() {
 
     const roomList = document.getElementById('roomList');
     const roomItem = document.createElement('div');
-    roomItem.innerHTML = `<span class="fac-name"> • ${name} </span>`;
+    roomItem.className = 'room-item';
+    roomItem.innerHTML = `
+                <span class="fac-name"> • ${name} </span>
+                <div class="item-actions">
+                    <button class="edit-btn" onclick="editRoom(this)"><i class="fas fa-edit"></i></button>
+                    <button class="remove-btn" onclick="removeItem(this)"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
     roomList.appendChild(roomItem);
 
     document.getElementById('roomName').value = '';
     hideRoomForm();
+}
+
+function editRoom(button) {
+    const item = button.closest('.room-item');
+    const name = item.querySelector('.fac-name').textContent.replace('•', '').trim();
+
+    document.getElementById('roomName').value = name;
+
+    item.remove();
+    showRoomForm();
+}
+
+function removeItem(button) {
+    if (confirm('Are you sure you want to remove this item?')) {
+        const item = button.closest('.faculty-item, .section-item, .room-item');
+        item.remove();
+    }
 }
 
 window.onclick = function (event) {
@@ -171,43 +290,3 @@ window.onclick = function (event) {
         });
     }
 }
-   document.addEventListener('DOMContentLoaded', function() {
-    const settingSidebar = document.getElementById('settingSidebar');
-    const closeSidebar = document.getElementById('closeSidebar');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const SettingIconBtn = document.getElementById('settingIcon');
-    const openImportOverlayBtn = document.getElementById('openImportOverlay');
-    const importOverlay = document.getElementById('importOverlay');
-    const closeImportOverlay = document.getElementById('closeImportOverlay');
-
-    if (SettingIconBtn) {
-        SettingIconBtn.addEventListener('click', function() {
-            settingSidebar.classList.toggle('active');
-        });
-    }
-
-    if (closeSidebar) {
-        closeSidebar.addEventListener('click', function() {
-            settingSidebar.classList.remove('active');
-        });
-    }
-
-    if (openImportOverlayBtn && importOverlay) {
-        openImportOverlayBtn.addEventListener('click', function() {
-            importOverlay.classList.add('active');
-        });
-    }
-    if (closeImportOverlay && importOverlay) {
-        closeImportOverlay.addEventListener('click', function() {
-            importOverlay.classList.remove('active');
-        });
-    }
-
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            alert('Logged out successfully');
-           //window.location.href = "somewhere only we know !!!";
-        });
-    }
-
-});

@@ -162,68 +162,72 @@
                     <button class="submit-btn" onclick="addRoom()">Add Room</button>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="settings-sidebar" id="settingSidebar">
-        <div class="sidebar-header">
-            <h2>Settings</h2>
-            <span class="close-btn" id="closeSidebar">&times;</span>
-        </div>
-        <br>
-        <div class="sidebar-content">
-            <div class="switch-row">
-                <label class="switch-light-dark">
-                    <input type="checkbox" id="switch-light-dark">
-                    <span class="slider round"></span>
-                </label>
-                <span class="switch-label">Switch To Dark Mode</span>
-            </div>
-            <br>
-            <div class="switch-row">
-                <label class="switch-notification">
-                    <input type="checkbox" id="switch-notification">
-                    <span class="slider round"></span>
-                </label>
-                <span class="switch-label">Allow Notifications</span>
-            </div>
-            <br>
-            <div class="import-button">
-                <button id="openImportOverlay">Import<img src="import-icon.png"></button>
-            </div>
-            <div class="sidebar-links">
-                <button class="logout-btn" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="import-overlay-bg" id="importOverlayBg"></div>
-    <div class="import-overlay" id="importOverlay">
-        <div class="import-overlay-top">
-            <h3>Import</h3>
-            <span class="close-import" id="closeImportOverlay">&times;</span>
-        </div>
-        <div class="import-content">
-            <div class="row1-import">
-                <div class="faculty-import">
-                    <input type="file" name="facultyCsv" id="facultyCsv" accept=".csv" style="display:none;">
-                    <button type="button" onclick="document.getElementById('facultyCsv').click()">Faculty</button>
+            <div class="settings-sidebar" id="settingSidebar">
+                <div class="sidebar-header">
+                    <h2>Settings</h2>
+                    <span class="close-btn" id="closeSidebar">&times;</span>
                 </div>
-                <div class="section-import">
-                    <input type="file" name="sectionCsv" id="sectionCsv" accept=".csv" style="display:none;">
-                    <button type="button" onclick="document.getElementById('sectionCsv').click();">Section</button>
+                <br>
+                <div class="sidebar-content">
+                    <div class="switch-row">
+                        <label class="switch-light-dark">
+                            <input type="checkbox" id="switch-light-dark">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="switch-label">Switch To Dark Mode</span>
+                    </div>
+                    <br>
+                    <div class="switch-row">
+                        <label class="switch-notification">
+                            <input type="checkbox" id="switch-notification">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="switch-label">Allow Notifications</span>
+                    </div>
+                    <br>
+                    <div class="import-button">
+                        <button id="openImportOverlay">Import<img src="import-icon.png"></button>
+                    </div>
+                    <div class="sidebar-links">
+                        <button class="logout-btn" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
                 </div>
             </div>
-            <br>
-            <div class="row2-import">
-                <div class="room-import">
-                    <input type="file" name="roomCsv" id="roomCsv" accept=".csv" style="display:none;">
-                    <button type="button" onclick="document.getElementById('roomCsv').click();">Room<br>Facility</button>
+            <div class="import-overlay-bg" id="importOverlayBg"></div>
+            <div class="import-overlay" id="importOverlay">
+                <div class="import-overlay-top">
+                    <h3>Import</h3>
+                    <span class="close-import" id="closeImportOverlay">&times;</span>
                 </div>
-                <div class="subject-import">
-                    <input type="file" name="subjectCsv" id="subjectCsv" accept=".csv" style="display:none;">
-                    <button type="button" onclick="document.getElementById('subjectCsv').click();">Subjects</button>
+                <div class="import-content">
+                    <div class="row1-import">
+                        <div class="faculty-import">
+                            <input type="file" name="facultyCsv" id="facultyCsv" accept=".csv" style="display:none;">
+                            <button type="button"
+                                onclick="document.getElementById('facultyCsv').click()">Faculty</button>
+                        </div>
+                        <div class="section-import">
+                            <input type="file" name="sectionCsv" id="sectionCsv" accept=".csv" style="display:none;">
+                            <button type="button"
+                                onclick="document.getElementById('sectionCsv').click();">Section</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row2-import">
+                        <div class="room-import">
+                            <input type="file" name="roomCsv" id="roomCsv" accept=".csv" style="display:none;">
+                            <button type="button"
+                                onclick="document.getElementById('roomCsv').click();">Room<br>Facility</button>
+                        </div>
+                        <div class="subject-import">
+                            <input type="file" name="subjectCsv" id="subjectCsv" accept=".csv" style="display:none;">
+                            <button type="button"
+                                onclick="document.getElementById('subjectCsv').click();">Subjects</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
