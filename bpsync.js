@@ -29,35 +29,71 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeImportOverlay = document.getElementById('closeImportOverlay');
 
     if (SettingIconBtn) {
-        SettingIconBtn.addEventListener('click', function() {
+        SettingIconBtn.addEventListener('click', function () {
             settingSidebar.classList.toggle('active');
         });
     }
 
     if (closeSidebar) {
-        closeSidebar.addEventListener('click', function() {
+        closeSidebar.addEventListener('click', function () {
             settingSidebar.classList.remove('active');
         });
     }
 
     if (openImportOverlayBtn && importOverlay) {
-        openImportOverlayBtn.addEventListener('click', function() {
+        openImportOverlayBtn.addEventListener('click', function () {
             importOverlay.classList.add('active');
         });
     }
     if (closeImportOverlay && importOverlay) {
-        closeImportOverlay.addEventListener('click', function() {
+        closeImportOverlay.addEventListener('click', function () {
             importOverlay.classList.remove('active');
         });
     }
 
     if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             alert('Logged out successfully');
-           window.location.href = 'index.html';
+            window.location.href = 'index.html';
         });
     }
+    const notificationSwitch = document.getElementById('switch-notification');
+    if (notificationSwitch) {
+        notificationSwitch.addEventListener('change', function () {
+            if (this.checked) {
+                if (Notification.permission !== 'granted') {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === 'granted') {
+                            new Notification('Notifications enabled', {
+                                body: 'You will now receive notifications from BPsync'
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    const fileInputs = {
+        facultyCsv: document.getElementById('facultyCsv'),
+        sectionCsv: document.getElementById('sectionCsv'),
+        roomCsv: document.getElementById('roomCsv'),
+        subjectCsv: document.getElementById('subjectCsv')
+    };
+
+    Object.keys(fileInputs).forEach(key => {
+        if (fileInputs[key]) {
+            fileInputs[key].addEventListener('change', function (e) {
+                if (this.files.length > 0) {
+                    alert(`File selected for import: ${this.files[0].name}`);
+                    // example: parseCSV(this.files[0]);
+                }
+            });
+        }
+    });
 });
+
+
 
 // Update Data !!!
 
@@ -337,3 +373,4 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
         }
     }
 });
+
