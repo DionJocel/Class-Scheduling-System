@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <link rel="stylesheet" href="bpsync.css">
+    <link rel="stylesheet" href="darkmode.css">
+    <link rel="stylesheet" href="mediaquery.css">
     <link rel="icon" href="icon.png" type="image/x-icon">
     <title>BPsync</title>
 </head>
@@ -17,7 +19,7 @@
             <div class="default-view active" data-tab-content>
                 <div class="top-area">
                     <i class="fa-solid fa-gear" id="settingIcon" class="setting-icon"></i>
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user" onclick="openProfile()"></i>
                 </div>
                 <div class="logo-container">
                     <img src="Logo.png" class="light-mode-logo">
@@ -297,6 +299,70 @@
                             <input type="file" name="subjectCsv" id="subjectCsv" accept=".csv" style="display:none;">
                             <button type="button"
                                 onclick="document.getElementById('subjectCsv').click();">Subjects</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay" id="profilePopupOne">
+                <div class="profile-popup-1">
+                    <div class="profile-row" data-tab-target="#profileTab" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <div class="column-2-prof">
+                            <h2 span class="current-user" id="currentUser"> Profile </h2>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="logout-row" id="logoutBtn">
+                        <img src="logout.png">
+                        <h3> Log Out</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-tab tab" id="profileTab" data-tab-content>
+                <div class="profile-header">
+                    <h3 data-tab-target=".default-view"> &lt; </h3>
+                    <h2> Manage Account </h2>
+                </div>
+                <div class="main-prof-section">
+                    <div class="image-container">
+                        <img src="profile-image.png" id="profilePic">
+                    </div>
+                    <h2 span class="username" id="username"></h2>
+                    <h3 span class="role" id="role"></h3>
+                    <h3 span class="email" id="emailDisplay"></h3>
+                    <h3 span class="id" id="idDisplay"></h3>
+                    <hr class="profile-hr">
+                    <form id="editProfile">
+                        <label for="name"> Display Name* (Set whatever you want to be your name)</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your display name">
+                        <label for="email"> Email* </label>
+                        <input type="email" name="email" id="email" placeholder="Enter your email">
+                        <label for="password"> Password* </label>
+                        <input type="password" name="password" id="password" placeholder="Change password">
+                        <i class="fa-solid fa-eye-slash" id="eyeIcon" onclick="showPass()"></i>
+                        <label for="confirmPassword"> Confirm Password* </label>
+                        <input type="password" name="confirmPassword" id="confirmPassword"
+                            placeholder="Confirm password">
+                        <i class="confirm fa-solid fa-eye-slash" id="eyeIcon2" onclick="showConfirmPass()"></i>
+                        <hr class="profile-hr second-hr">
+                        <div class="profile-buttons">
+                            <button type="button" id="deleteAcc"> Delete Account </button>
+                            <button type="submit" id="saveProfile"> Save </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="overlay" id="deletePopup">
+                    <div class="delete-confirmation">
+                        <i class="fa-regular fa-circle-xmark" id="closeDelete"></i>
+                        <div class="warning-img">
+                            <img src="warning.png">
+                        </div>
+                        <h2> Once you delete your account, there's no getting it back.</h2>
+                        <h2> Make sure you want to do this.</h2>
+                        <hr class="delete-hr">
+                        <div class="buttons-delete">
+                            <button type="submit" id="permanentlyDelete"> Yes, Delete Account </button>
+                            <button type="button" id="cancelDelete"> No, Keep it </button>
                         </div>
                     </div>
                 </div>

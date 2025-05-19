@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    updateUserDisplay();
     const tabs = document.querySelectorAll('[data-tab-target]');
     const tabContents = document.querySelectorAll('[data-tab-content]');
 
@@ -19,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // SIDEBAR 
-
     const settingSidebar = document.getElementById('settingSidebar');
     const closeSidebar = document.getElementById('closeSidebar');
     const logoutBtn = document.getElementById('logoutBtn');
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function () {
+            localStorage.setItem('isLoggedIn', 'false');
             alert('Logged out successfully');
             window.location.href = 'index.html';
         });
@@ -92,8 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
 
 // Update Data !!!
 
@@ -374,3 +373,174 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     }
 });
 
+// Profile JS
+
+// Profile Popup 
+const profilePopupOne = document.getElementById('profilePopupOne');
+profilePopupOne.style.display = 'none';
+
+function openProfile() {
+    if (profilePopupOne.style.display == 'none') {
+        profilePopupOne.style.display = 'block';
+    }
+}
+
+function closePopup() {
+    profilePopupOne.style.display = 'none';
+}
+
+
+const deleteAcc = document.getElementById('deleteAcc');
+const deletePopup = document.getElementById('deletePopup');
+const closeDelete = document.getElementById('closeDelete');
+const permanentlyDelete = document.getElementById('permanentlyDelete');
+const cancelDelete = document.getElementById('cancelDelete');
+deletePopup.style.display = "none";
+
+deleteAcc.addEventListener('click', function () {
+    deletePopup.style.display = "block";
+});
+
+closeDelete.addEventListener('click', function () {
+    deletePopup.style.display = "none";
+});
+
+permanentlyDelete.addEventListener('click', function () {
+    alert('BYE BYE');
+    // here yung code ng delete account
+    window.location.href = 'index.html';
+});
+
+cancelDelete.addEventListener('click', function () {
+    alert('Account not deleted.');
+    deletePopup.style.display = "none";
+});
+
+// mata profile 
+const newPass = document.getElementById('password');
+const confirmPass = document.getElementById('confirmPassword');
+const eyeIcon = document.getElementById('eyeIcon');
+const eyeIcon2 = document.getElementById('eyeIcon2');
+
+function showPass() {
+    if (newPass.type == 'password') {
+        newPass.type = 'text';
+    }
+    else {
+        newPass.type = 'password';
+    }
+    eyeIcon.classList.toggle('fa-eye');
+    eyeIcon.classList.toggle('fa-eye-slash');
+}
+
+function showConfirmPass() {
+    if (confirmPass.type == 'password') {
+        confirmPass.type = 'text';
+    }
+    else {
+        confirmPass.type = 'password';
+    }
+    eyeIcon2.classList.toggle('fa-eye');
+    eyeIcon2.classList.toggle('fa-eye-slash');
+}
+
+// profile pic 
+const profilePic = document.getElementById('profilePic');
+profilePic.addEventListener('click', function () {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+
+    fileInput.addEventListener('change', function () {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                profilePic.src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    fileInput.click();
+});
+
+// medyo working na save data for user login and signup 
+document.querySelector('[data-tab-target="#profileTab"]').addEventListener('click', function () {
+    const currentUser = localStorage.getItem('currentUser') || 'User';
+    const userEmail = localStorage.getItem('userEmail') || 'No email registered';
+    const userId = localStorage.getItem('userId') || 'No ID';
+    const userRole = localStorage.getItem('userRole');
+
+    document.getElementById('username').textContent = currentUser;
+    document.getElementById('emailDisplay').textContent = userEmail;
+    document.getElementById('idDisplay').textContent = `ID: ${userId}`;
+    document.getElementById('email').value = userEmail;
+
+    // display role ONLY if user ay one of the admin users sa array
+    // pwede din naman lagyan ng admin ng role: Student / Teacher
+    const roleElement = document.getElementById('role');
+    if (userRole) {
+        roleElement.textContent = userRole;
+        roleElement.style.display = 'block';
+    } else {
+        roleElement.style.display = 'none';
+    }
+
+    document.getElementById('name').value = currentUser;
+
+    document.getElementById('currentUser').textContent = currentUser;
+});
+
+document.querySelector('[data-tab-target="#profileTab"]').addEventListener('click', updateUserDisplay);
+
+const editProfile = document.getElementById('editProfile');
+editProfile.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const newPassword = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const newName = document.getElementById('name').value;
+    const newEmail = document.getElementById('email').value;
+
+    if (!newEmail.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+    }
+
+    if (newPassword && newPassword !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+    }
+
+    localStorage.setItem('currentUser', newName || newEmail.split('@')[0]);
+    localStorage.setItem('userEmail', newEmail);
+
+    if (newPassword && confirmPassword && newPassword === confirmPassword) {
+        // leave ko to blank, database to backend
+    }
+
+    updateUserDisplay();
+    alert('Profile updated successfully!');
+});
+
+function updateUserDisplay() {
+    const currentUser = localStorage.getItem('currentUser') || 'User';
+    const userEmail = localStorage.getItem('userEmail') || 'No email registered';
+    const userId = localStorage.getItem('userId') || 'No ID';
+    const userRole = localStorage.getItem('userRole');
+
+    document.getElementById('username').textContent = currentUser;
+    document.getElementById('emailDisplay').textContent = userEmail;
+    document.getElementById('idDisplay').textContent = `ID: ${userId}`;
+    document.getElementById('email').value = userEmail;
+
+    const roleElement = document.getElementById('role');
+    if (userRole) {
+        roleElement.textContent = userRole;
+        roleElement.style.display = 'block';
+    } else {
+        roleElement.style.display = 'none';
+    }
+
+    document.getElementById('name').value = currentUser;
+    document.getElementById('currentUser').textContent = currentUser;
+}

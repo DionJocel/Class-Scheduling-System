@@ -1,0 +1,438 @@
+@media only screen and (min-width: 768px) {
+    .logo-container {
+        width: 25dvh;
+        height: 15dvh;
+    }
+
+    .tabs-container {
+        height: 70dvh;
+        width: 70%;
+    }
+
+    .button {
+        width: 20dvh;
+        height: 28dvh;
+        font-size: 2.4dvh;
+    }
+
+    /* Update Data */
+    .management-section {
+        flex: 1;
+        min-width: 40dvh;
+    }
+
+    .edit-btn,
+    .remove-btn {
+        transform: translateY(-7.5dvh);
+    }
+
+    /* Profile */
+    .profile-tab {
+        overflow: hidden;
+    }
+
+    .profile-popup-1 {
+        width: 350px;
+    }
+
+    .logout-row img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-header {
+        padding: 0px;
+        height: 80px;
+        align-items: center;
+    }
+
+    .profile-header h2 {
+        font-size: 24px;
+    }
+
+    .profile-header h3 {
+        top: 1.2%;
+        font-size: 40px;
+        font-weight: 800;
+    }
+
+    .main-prof-section .image-container {
+        width: 170px;
+        height: 170px;
+        margin-bottom: 10px;
+    }
+
+    .main-prof-section h2 {
+        font-size: 32px;
+    }
+
+    .main-prof-section h3 {
+        font-size: 18px;
+    }
+
+    .main-prof-section form {
+        height: 580px;
+        padding: 3dvh;
+    }
+
+    .main-prof-section label {
+        font-size: 21px;
+        margin-bottom: 10px;
+    }
+
+    .main-prof-section input {
+        margin-bottom: 15px;
+        height: 45px;
+        text-indent: 15px;
+        font-size: 20px;
+    }
+
+    .main-prof-section .fa-eye-slash,
+    .main-prof-section .fa-eye {
+        bottom: 49px;
+        left: 635px;
+        font-size: 24px;
+    }
+
+    .main-prof-section button {
+        height: 65px;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 24px;
+    }
+
+    .delete-confirmation {
+        width: 55dvh;
+    }
+
+    .fa-circle-xmark {
+        font-size: 3.5dvh;
+    }
+
+    .delete-hr {
+        width: 90%;
+        align-self: center;
+    }
+
+    .buttons-delete {
+        margin-top: 15px;
+        gap: 10px;
+    }
+
+    .buttons-delete button {
+        font-weight: 500;
+    }
+}
+
+@media only screen and (min-width: 1020px) {
+    .logo-container {
+        width: 30dvh;
+        height: 20dvh;
+    }
+
+    .tabs-container {
+        height: 62dvh;
+        width: 100%;
+    }
+
+    .top-area {
+        padding: 5dvh 5dvh;
+    }
+
+    .fa-gear,
+    .fa-user {
+        cursor: pointer;
+        transition: all 0.4s ease;
+    }
+
+    .fa-gear:hover,
+    .fa-user:hover {
+        color: rgba(0, 0, 0, 0.596);
+        scale: 1.1;
+    }
+
+    .button {
+        width: 28dvh;
+        height: 38dvh;
+        font-size: 2.5dvh;
+        border-radius: 2dvh;
+        box-shadow: 0px 0px 2dvh rgba(0, 0, 0, 0.505);
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+    .button .fa-solid {
+        font-size: 12dvh;
+        transition: all 0.4s ease;
+    }
+
+    .button:hover {
+        width: 30dvh;
+        height: 40dvh;
+        font-size: 2.7dvh;
+    }
+
+    .button:hover .fa-solid {
+        font-size: 14.5dvh;
+    }
+
+    /* Update Data*/
+    .management-section {
+        flex: 1;
+        min-width: 120dvh;
+    }
+
+    .top-add h3 {
+        font-size: 2.2dvh;
+    }
+
+    .add-new-btn {
+        width: 20dvh;
+        height: 5dvh;
+        border-radius: 20dvh;
+        font-size: 1.5dvh;
+        transition: 0.4s ease;
+    }
+
+    .add-new-btn:hover {
+        background: #71d50d;
+        scale: 1.05;
+    }
+
+    .overlay-content {
+        border-radius: 3dvh;
+        min-width: 87dvh;
+        min-height: 55dvh;
+    }
+
+    .overlay-content h3 {
+        font-size: 2.9dvh;
+    }
+
+    .close-btn {
+        font-size: 4dvh;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-group input[type="text"] {
+        width: 60%;
+        height: 5dvh;
+        border-radius: 20dvh;
+        font-size: 1.8dvh;
+        text-indent: 2dvh;
+    }
+
+    .radio-group {
+        font-size: 1.6dvh;
+    }
+
+    .checkbox-group {
+        font-size: 1.3dvh;
+    }
+
+    .submit-btn {
+        font-size: 2dvh;
+        width: 30dvh;
+        height: 6.5dvh;
+        border-radius: 50dvh;
+    }
+
+    span.fac-name {
+        font-size: 2.4dvh;
+    }
+
+    span.fac-head {
+        font-size: 1.8dvh;
+    }
+
+    span.shift {
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 2dvh;
+    }
+
+    .edit-btn,
+    .remove-btn {
+        padding: 8px 15px;
+        font-size: 2.1dvh;
+        transform: translateY(-8.5dvh);
+    }
+
+    /* Profile */
+    .profile-popup-1 {
+        width: 35dvh;
+    }
+
+    .profile-row {
+        transition: 0.4s ease;
+    }
+
+    .profile-row:hover {
+        transform: translateX(3dvh);
+    }
+
+    .logout-row {
+        transition: 0.4s ease;
+    }
+
+    .logout-row:hover {
+        transform: translateX(3dvh);
+    }
+
+    .logout-row img {
+        width: 4dvh;
+        height: 4dvh;
+    }
+
+    .profile-tab {
+        cursor: default;
+    }
+
+    .profile-header {
+        padding: 3dvh;
+        height: 10dvh;
+    }
+
+    .profile-header h2 {
+        font-size: 2.5dvh;
+    }
+
+    .profile-header h3 {
+        top: 2.5dvh;
+        font-size: 4dvh;
+    }
+
+    .main-prof-section .image-container {
+        margin-top: 2dvh;
+        width: 16dvh;
+        height: 16dvh;
+    }
+
+    .main-prof-section h2 {
+        font-size: 3.2dvh;
+    }
+
+    .main-prof-section h3 {
+        font-size: 2dvh;
+    }
+
+    .main-prof-section form {
+        height: 60dvh;
+        padding: 2dvh;
+    }
+
+    .main-prof-section label {
+        font-size: 1.8dvh;
+        margin-bottom: 1dvh;
+    }
+
+    .main-prof-section input {
+        margin-bottom: 1.5dvh;
+        height: 4dvh;
+        text-indent: 1.5dvh;
+        font-size: 2dvh;
+    }
+
+    .main-prof-section .fa-eye-slash,
+    .main-prof-section .fa-eye {
+        bottom: 4.6dvh;
+        left: 148dvh;
+        font-size: 2.3dvh;
+        cursor: pointer;
+        transition: 0.4s ease;
+    }
+
+    .main-prof-section .fa-eye-slash:hover,
+    .main-prof-section .fa-eye:hover {
+        transform: translateX(-0.5dvh);
+        color: rgba(46, 46, 46, 0.55);
+    }
+
+    .main-prof-section button {
+        height: 6.3dvh;
+        border-radius: 1.2dvh;
+        font-size: 2.4dvh;
+        cursor: pointer;
+        width: 40%;
+        transition: 0.4s ease;
+    }
+
+    .main-prof-section button:hover {
+        width: 60%;
+    }
+
+    .delete-confirmation {
+        width: 65dvh;
+    }
+
+    .fa-circle-xmark {
+        cursor: pointer;
+        transition: 0.4s ease;
+    }
+
+    .fa-circle-xmark:hover {
+        scale: 1.15;
+    }
+
+    .buttons-delete {
+        margin-top: 0dvh;
+        gap: 1dvh;
+    }
+
+    .buttons-delete button {
+        transition: 0.4s ease;
+        cursor: pointer;
+    }
+
+    .buttons-delete button:hover {
+        scale: 1.3;
+    }
+}
+
+/* Side Bar Media */
+@media (max-width: 600px) {
+    .settings-sidebar {
+        width: 75vw;
+        left: -100vw;
+        border-left: none;
+        border-top: 1px solid #f0d6d6;
+        top: 0;
+    }
+
+    .settings-sidebar.active {
+        left: 0;
+    }
+
+    .sidebar-header {
+        padding: 15px;
+    }
+
+    .sidebar-content {
+        padding: 10px;
+    }
+
+    .import-button button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logout-btn {
+        font-size: 16px;
+    }
+
+    .import-overlay {
+        width: 98vw;
+        padding: 2vw;
+    }
+
+    .row1-import button,
+    .row2-import button {
+        width: 20dvh;
+        font-size: 0.95rem;
+    }
+}

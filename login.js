@@ -160,7 +160,8 @@ var usernameArray = ["SuperAdminMIS", "VPAA", "AdminStaff"];
 var passwordArray = ["@bpconlypass01", "@bpconlypass01", "@bpconlypass01"];
 var valid = false;
 
-function validate() {
+function validate(event) {
+    event.preventDefault();
     const policyCheckbox = document.getElementById('policyCheckbox');
     
     if (!policyCheckbox.checked) {
@@ -178,6 +179,17 @@ function validate() {
         for (var i = 0; i < usernameArray.length; i++) {
             if (user == usernameArray[i] && password == passwordArray[i]) {
                 valid = true;
+                localStorage.setItem('currentUser', user);
+                localStorage.setItem('userEmail', user.includes('@') ? user : `${user}@bpc.edu.ph`);
+                localStorage.setItem('userId', usernameIdArray[i]);
+                const adminUsers = ["SuperAdminMIS", "VPAA", "AdminStaff"];
+                if (adminUsers.includes(user)) {
+                    let role = "";
+                    if (user === "SuperAdminMIS") role = "Super Admin";
+                    else if (user === "VPAA") role = "VP Admin";
+                    else if (user === "AdminStaff") role = "Admin Staff";
+                    localStorage.setItem('userRole', role);
+                }
                 break;
             }
             else {
@@ -188,6 +200,18 @@ function validate() {
         for (var i = 0; i < usernameIdArray.length; i++) {
             if (user == usernameIdArray[i] && password == passwordArray[i]) {
                 valid = true;
+                localStorage.setItem('currentUser', user);
+                localStorage.setItem('userEmail', `${user}@bpc.edu.ph`);
+                localStorage.setItem('userId', usernameIdArray[i]);
+
+                const adminUsers = ["SuperAdminMIS", "VPAA", "AdminStaff"];
+                if (adminUsers.includes(user)) {
+                    let role = "";
+                    if (user === "SuperAdminMIS") role = "Super Admin";
+                    else if (user === "VPAA") role = "VPAA";
+                    else if (user === "AdminStaff") role = "Admin Staff";
+                    localStorage.setItem('userRole', role);
+                }
                 break;
             }
             else {
@@ -216,6 +240,7 @@ function validate() {
 
             if (codeAttempt == code) {
                 alert("Login Successful");
+                localStorage.setItem('isLoggedIn', 'true');
                 window.location.href = "bpsync.html";
                 return false;
             } else {
@@ -238,7 +263,8 @@ function validate() {
     }
 }
 
-function signup() {
+function signup(event) {
+    event.preventDefault();
     const policyCheckbox = document.getElementById('policyCheckboxSignup');
     
     if (!policyCheckbox.checked) {
@@ -246,6 +272,7 @@ function signup() {
         return false;
     }
 
+    var newEmail = document.register.username.value;
     var newUser = document.register.username.value;
     var newUserId = document.register.id.value;
     var newPass = document.register.password.value;
@@ -273,10 +300,16 @@ function signup() {
                 alert('Username or Email already exists please choose a new one.');
             }
             else {
-                usernameArray.push(newUser);
+                usernameArray.push(newEmail);
                 passwordArray.push(newPass);
                 usernameIdArray.push(newUserId);
+                localStorage.setItem('currentUser', newEmail.split('@')[0]);
+                localStorage.setItem('userEmail', newEmail); 
+                localStorage.setItem('userId', newUserId);
+                localStorage.removeItem('userRole');
                 alert('You have registered successfully!');
+                document.querySelector('[data-tab-target="#loginTab"]').click();
+                updateUserDisplay();
             }
         }
         else {

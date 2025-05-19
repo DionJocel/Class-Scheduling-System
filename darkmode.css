@@ -1,0 +1,201 @@
+.switch-light-dark .slider:after {
+    content: "☀️";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 14px;
+    opacity: 0;
+    transition: .4s;
+}
+
+.switch-light-dark :checked+.slider:after {
+    content: "🌙";
+    left: 35px;
+    opacity: 1;
+}
+
+body.dark-mode {
+    background: linear-gradient(to bottom, #211A2A 30%, #705890);
+}
+
+.dark-mode .fa-user,
+.dark-mode .fa-gear {
+    color: white;
+}
+
+.dark-mode-logo {
+    display: none;
+}
+
+.dark-mode .dark-mode-logo {
+    display: flex;
+}
+
+.dark-mode .light-mode-logo {
+    display: none;
+}
+
+.dark-mode .button {
+    background-color: #211A2A;
+    box-shadow: 0px 0px 10px #FFFFFF;
+    color: #8DD737;
+}
+
+.dark-mode .button:nth-of-type(2),
+.dark-mode .button:nth-of-type(3) {
+    background-color: #8DD737;
+}
+
+.dark-mode .button:nth-of-type(2) h2,
+.dark-mode .button:nth-of-type(3) h2 {
+    color: black;
+}
+
+.dark-mode .button:nth-of-type(2) .fa-solid,
+.dark-mode .button:nth-of-type(3) .fa-solid {
+    color: black;
+}
+
+.dark-mode .tab h1 {
+    color: white;
+}
+
+.dark-mode .back-button {
+    color: white;
+}
+
+.dark-mode .management-section {
+    background: #211A2A;
+    box-shadow: 0 0px 7px rgba(255, 255, 255, 0.1);
+    border: 1px solid #b4a6a630;
+}
+
+.dark-mode .top-add h3 {
+    color: white;
+}
+
+.dark-mode .add-new-btn {
+    background: #8DD737;
+    color: black;
+}
+
+.dark-mode .add-new-btn:hover {
+    background: rgb(128, 255, 0);
+}
+
+.dark-mode .item-list div {
+    background: #211A2A;
+}
+
+.dark-mode .fac-name {
+    color: white;
+}
+
+.dark-mode span.fac-head {
+    color: white;
+}
+
+.dark-mode span.shift {
+    color: rgba(255, 255, 255, 0.498);
+}
+
+.dark-mode .edit-btn,
+.dark-mode .remove-btn {
+    color: white;
+    background-color: #211A2A;
+}
+
+.dark-mode .faculty-item,
+.dark-mode .section-item,
+.dark-mode .room-item {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.dark-mode .overlay-content {
+    background: #35224C;
+}
+
+.dark-mode .sidebar-header,
+.dark-mode .sidebar-header span {
+    background: #8DD737;
+    color: black;
+}
+
+.dark-mode .settings-sidebar {
+    background-color: rgba(0, 0, 0, 0.658);
+    color: white;
+}
+
+.dark-mode .import-button button {
+    background-color: #8DD737;
+    color: black;
+    font-weight: 800;
+}
+
+.dark-mode input:checked+.slider {
+    background-color: #8DD737;
+}
+
+.dark-mode .profile-popup-1 {
+    background-color: #35224C;
+    color: white;
+}
+
+.dark-mode .logout-row img {
+    filter: invert(100%);
+}
+
+.dark-mode #profileTab {
+    background: #35224C;
+}
+
+.dark-mode .profile-header {
+    background-color: #8DD737;
+    color: black;
+}
+
+.dark-mode .profile-header h3 {
+    color: black;
+}
+
+.dark-mode .main-prof-section {
+    color: white;
+}
+
+.dark-mode .main-prof-section label {
+    font-weight: 400;
+}
+
+.dark-mode .main-prof-section input {
+    background-color: #211A2A;
+    border: 1px solid #919191;
+    color: white;
+}
+
+.dark-mode .main-prof-section input::placeholder {
+    color: white;
+}
+
+.dark-mode .delete-confirmation {
+    background-color: #35224C;
+    color: white;
+}
+
+.dark-mode .buttons-delete button {
+    font-weight: 500;
+}
+
+.dark-mode .buttons-delete button:nth-child(2) {
+    background-color: #211A2A;
+}
+
+.dark-mode .role,
+.dark-mode .email,
+.dark-mode .id {
+    color: white;
+}

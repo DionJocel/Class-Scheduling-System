@@ -31,11 +31,11 @@
                 <div id="loginTab" data-tab-content class="tab active">
                     <h1>Log in</h1>
                     <form class="login-form" name="login">
-                        <input type="text" name="username" id="username" placeholder="Email or Id Number">
-                        <input type="password" name="password" id="password" placeholder="Password">
+                        <input type="text" name="username" id="username" placeholder="Email or Id Number" required>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
                         <i class="fa-solid fa-eye-slash" onclick="showPass()"></i>
                         <p class="forgot">Forgot Password?</p>
-                        <input type="button" value="Login" class="button" onclick="validate()">
+                        <input type="submit" value="Login" class="button" onclick="validate(event)">
                     </form>
                     <p class="claim">
                         <input type="checkbox" id="policyCheckbox" style="display: none;">
@@ -51,10 +51,9 @@
                     <form class="signup-form" name="register">
                         <input type="email" name="username" id="username" placeholder="Email">
                         <input type="text" name="id" id="id" placeholder="BPC Id Number">
-                        <input type="password" name="confirmPassword" id="confirmPassword"
-                            placeholder="Confirm Password">
                         <input type="password" name="password" id="password" placeholder="Password">
-                        <input type="button" value="Sign up" class="button" onclick="signup()">
+                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+                        <input type="button" value="Sign up" class="button" onclick="signup(event)">
                     </form>
                     <p class="claim">
                         <input type="checkbox" id="policyCheckboxSignup" style="display: none;">
@@ -78,6 +77,11 @@
         </div>
     </div>
     <script src="login.js" defer></script>
+    <script>
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            window.location.href = 'bpsync.html';
+        }
+    </script>
 </body>
 
 </html>

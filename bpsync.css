@@ -982,365 +982,311 @@ input:checked+.slider:before {
     color: white;
 }
 
+/* Profile Popup */
 
-@media only screen and (min-width: 768px) {
-    .logo-container {
-        width: 25dvh;
-        height: 15dvh;
-    }
-
-    .tabs-container {
-        height: 70dvh;
-        width: 70%;
-    }
-
-    .button {
-        width: 20dvh;
-        height: 28dvh;
-        font-size: 2.4dvh;
-    }
-
-    /* Update Data */
-    .management-section {
-        flex: 1;
-        min-width: 40dvh;
-    }
-
-    .edit-btn,
-    .remove-btn {
-        transform: translateY(-7.5dvh);
-    }
+.profile-popup-1 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 210px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.32);
+    padding: 10px;
+    border-radius: 0 0 2dvh 2dvh;
 }
 
-@media only screen and (min-width: 1020px) {
-    .logo-container {
-        width: 30dvh;
-        height: 20dvh;
-    }
-
-    .tabs-container {
-        height: 62dvh;
-        width: 100%;
-    }
-
-    .top-area {
-        padding: 5dvh 5dvh;
-    }
-
-    .fa-gear,
-    .fa-user {
-        cursor: pointer;
-        transition: all 0.4s ease;
-    }
-
-    .fa-gear:hover,
-    .fa-user:hover {
-        color: rgba(0, 0, 0, 0.596);
-        scale: 1.1;
-    }
-
-    .button {
-        width: 28dvh;
-        height: 38dvh;
-        font-size: 2.5dvh;
-        border-radius: 2dvh;
-        box-shadow: 0px 0px 2dvh rgba(0, 0, 0, 0.505);
-        transition: all 0.4s ease;
-        cursor: pointer;
-    }
-
-    .button .fa-solid {
-        font-size: 12dvh;
-        transition: all 0.4s ease;
-    }
-
-    .button:hover {
-        width: 30dvh;
-        height: 40dvh;
-        font-size: 2.7dvh;
-    }
-
-    .button:hover .fa-solid {
-        font-size: 14.5dvh;
-    }
-
-    /* Update Data*/
-    .management-section {
-        flex: 1;
-        min-width: 120dvh;
-    }
-
-    .top-add h3 {
-        font-size: 2.2dvh;
-    }
-
-    .add-new-btn {
-        width: 20dvh;
-        height: 5dvh;
-        border-radius: 20dvh;
-        font-size: 1.5dvh;
-        transition: 0.4s ease;
-    }
-
-    .add-new-btn:hover {
-        background: #71d50d;
-        scale: 1.05;
-    }
-
-    .overlay-content {
-        border-radius: 3dvh;
-        min-width: 87dvh;
-        min-height: 55dvh;
-    }
-
-    .overlay-content h3 {
-        font-size: 2.9dvh;
-    }
-
-    .close-btn {
-        font-size: 4dvh;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .form-group input[type="text"] {
-        width: 60%;
-        height: 5dvh;
-        border-radius: 20dvh;
-        font-size: 1.8dvh;
-        text-indent: 2dvh;
-    }
-
-    .radio-group {
-        font-size: 1.6dvh;
-    }
-
-    .checkbox-group {
-        font-size: 1.3dvh;
-    }
-
-    .submit-btn {
-        font-size: 2dvh;
-        width: 30dvh;
-        height: 6.5dvh;
-        border-radius: 50dvh;
-    }
-
-    span.fac-name {
-        font-size: 2.4dvh;
-    }
-
-    span.fac-head {
-        font-size: 1.8dvh;
-    }
-
-    span.shift {
-        align-items: center;
-        justify-content: flex-start;
-        padding-left: 2dvh;
-    }
-
-    .edit-btn,
-    .remove-btn {
-        padding: 8px 15px;
-        font-size: 2.1dvh;
-        transform: translateY(-8.5dvh);
-    }
-}
-
-/* Side Bar Media */
-@media (max-width: 600px) {
-    .settings-sidebar {
-        width: 75vw;
-        left: -100vw;
-        border-left: none;
-        border-top: 1px solid #f0d6d6;
-        top: 0;
-    }
-
-    .settings-sidebar.active {
-        left: 0;
-    }
-
-    .sidebar-header {
-        padding: 15px;
-    }
-
-    .sidebar-content {
-        padding: 10px;
-    }
-
-    .import-button button {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .logout-btn {
-        font-size: 16px;
-    }
-
-    .import-overlay {
-        width: 98vw;
-        padding: 2vw;
-    }
-
-    .row1-import button,
-    .row2-import button {
-        width: 80vw;
-        font-size: 0.95rem;
-    }
-}
-
-
-
-
-
-/*        DARK MODE STYLES NASA BABA PARA MADALI HANAPIN    */
-/*          ADD (.dark-mode) SA UNAHAN NG MGA SELECTOR      */
-
-.switch-light-dark .slider:after {
-    content: "☀️";
-    position: absolute;
-    left: 5px;
-    top: 5px;
-    font-size: 14px;
-    opacity: 0;
-    transition: .4s;
-}
-
-.switch-light-dark :checked+.slider:after {
-    content: "🌙";
-    left: 35px;
-    opacity: 1;
-}
-
-body.dark-mode {
-    background: linear-gradient(to bottom, #211A2A 30%, #705890);
-}
-
-.dark-mode .fa-user,
-.dark-mode .fa-gear {
-    color: white;
-}
-
-.dark-mode-logo {
-    display: none;
-}
-
-.dark-mode .dark-mode-logo {
+.profile-row {
     display: flex;
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
-.dark-mode .light-mode-logo {
-    display: none;
+.profile-row i {
+    font-size: 5dvh;
+    cursor: pointer;
 }
 
-.dark-mode .button {
-    background-color: #211A2A;
-    box-shadow: 0px 0px 10px #FFFFFF;
-    color: #8DD737;
+.column-2-prof {
+    display: flex;
+    align-items: center;
 }
 
-.dark-mode .button:nth-of-type(2),
-.dark-mode .button:nth-of-type(3) {
-    background-color: #8DD737;
+.column-2-prof h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2.3dvh;
+    padding: 0 5px;
+    cursor: pointer;
 }
 
-.dark-mode .button:nth-of-type(2) h2,
-.dark-mode .button:nth-of-type(3) h2 {
-    color: black;
+.logout-row {
+    display: flex;
+    padding: 10px 2px;
+    padding-bottom: 0px;
 }
 
-.dark-mode .button:nth-of-type(2) .fa-solid,
-.dark-mode .button:nth-of-type(3) .fa-solid {
-    color: black;
+.logout-row img {
+    width: 32px;
+    height: 32px;
 }
 
-.dark-mode .tab h1 {
-    color: white;
+.logout-row h3 {
+    align-self: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 2.4dvh;
+    transition: 0.2s ease;
+    cursor: pointer;
 }
 
-.dark-mode .back-button {
-    color: white;
-}
-
-.dark-mode .management-section {
-    background: #211A2A;
-    box-shadow: 0 0px 7px rgba(255, 255, 255, 0.1);
-    border: 1px solid #b4a6a630;
-}
-
-.dark-mode .top-add h3 {
-    color: white;
-}
-
-.dark-mode .add-new-btn {
-    background: #8DD737;
-    color: black;
-}
-
-.dark-mode .add-new-btn:hover {
-    background: rgb(128, 255, 0);
-}
-
-.dark-mode .item-list div {
-    background: #211A2A;
-}
-
-.dark-mode .fac-name {
-    color: white;
-}
-
-.dark-mode span.fac-head {
-    color: white;
-}
-
-.dark-mode span.shift {
-    color: rgba(255, 255, 255, 0.498);
-}
-
-.dark-mode .edit-btn,
-.dark-mode .remove-btn {
-    color: white;
-    background-color: #211A2A;
-}
-
-.dark-mode .faculty-item,
-.dark-mode .section-item,
-.dark-mode .room-item {
-    position: relative;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-}
-
-.dark-mode .overlay-content {
-    background: #35224C;
-}
-
-.dark-mode .sidebar-header,
-.dark-mode .sidebar-header span {
-    background: #8DD737;
-    color: black;
-}
-
-.dark-mode .settings-sidebar {
-    background-color: rgba(0, 0, 0, 0.658);
-    color: white;
-}
-
-.dark-mode .import-button button {
-    background-color: #8DD737;
-    color: black;
+.logout-row h3:hover {
+    color: red;
     font-weight: 800;
 }
 
-.dark-mode input:checked+.slider {
-    background-color: #8DD737;
+#profileTab {
+    height: 100%;
+    width: 100%;
+    background: white;
+}
+
+#profilePopupOne {
+    background: transparent;
+}
+
+.profile-header {
+    background-color: #28AA1F;
+    color: white;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.profile-header h2 {
+    font-family: "Montagu Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.profile-header h3 {
+    position: absolute;
+    top: 10px;
+    left: 9%;
+    font-size: 30px;
+    color: #D9D9D9;
+    transition: 0.5s ease;
+}
+
+.profile-header h3:hover {
+    transform: translateX(-10px);
+    cursor: pointer;
+}
+
+.main-prof-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-prof-section .image-container {
+    margin-top: 5dvh;
+    align-self: center;
+    width: 120px;
+    height: 120px;
+}
+
+.main-prof-section .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.main-prof-section h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.main-prof-section h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+
+.main-prof-section .profile-hr {
+    margin-top: 15px;
+    width: 85%;
+    border: 1px solid #BEBEBE;
+}
+
+.main-prof-section form {
+    width: 90%;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    padding: 2dvh;
+    position: relative;
+}
+
+.main-prof-section label {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.main-prof-section input {
+    margin-bottom: 10px;
+    border-radius: 8px;
+    height: 30px;
+    border: 1px solid #919191;
+    text-indent: 13px;
+}
+
+.main-prof-section .fa-eye-slash,
+.main-prof-section .fa-eye {
+    position: relative;
+    bottom: 32px;
+    left: 265px;
+    font-size: 14px;
+}
+
+.main-prof-section .second-hr {
+    margin-top: -5px;
+    width: 100%;
+}
+
+.main-prof-section .profile-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 2dvh;
+}
+
+.main-prof-section button {
+    width: 48%;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#deleteAcc {
+    background-color: #D80000;
+}
+
+#saveProfile {
+    background-color: #28AA1F;
+}
+
+.delete-confirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45dvh;
+    height: 50dvh;
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #BEBEBE;
+}
+
+.fa-circle-xmark {
+    position: absolute;
+    right: 6%;
+    font-size: 3dvh;
+}
+
+.warning-img {
+    width: 18dvh;
+    height: 18dvh;
+    align-self: center;
+    justify-self: center;
+}
+
+.warning-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.delete-confirmation h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.4dvh;
+    width: 95%;
+    text-align: center;
+}
+
+.delete-hr {
+    border: 1px solid #BEBEBE;
+    margin: 15px 0;
+}
+
+.buttons-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.buttons-delete button {
+    width: 70%;
+    height: 4.7dvh;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 2.2dvh;
+}
+
+.buttons-delete button:nth-child(1) {
+    background-color: #D80000;
+}
+
+.buttons-delete button:nth-child(2) {
+    background-color: #A3A3A3;
+}
+
+.role {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.email {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+    word-break: break-all;
+}
+
+.id {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
 }
