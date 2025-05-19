@@ -507,7 +507,7 @@ editProfile.addEventListener('submit', function (e) {
         return;
     }
 
-    if (newPassword && newPassword !== confirmPassword) {
+    else if (newPassword && newPassword !== confirmPassword) {
         alert('Passwords do not match!');
         return;
     }
@@ -516,8 +516,8 @@ editProfile.addEventListener('submit', function (e) {
     localStorage.setItem('userEmail', newEmail);
 
     if (newPassword && confirmPassword && newPassword === confirmPassword) {
-        alert('Password updated successfully.')
         // leave ko to blank, database to backend
+         alert('Your Password has been changed successfully.')
     }
 
     updateUserDisplay();
