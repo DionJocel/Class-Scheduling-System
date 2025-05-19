@@ -516,6 +516,7 @@ editProfile.addEventListener('submit', function (e) {
     localStorage.setItem('userEmail', newEmail);
 
     if (newPassword && confirmPassword && newPassword === confirmPassword) {
+        alert('Password updated successfully.')
         // leave ko to blank, database to backend
     }
 
