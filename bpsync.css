@@ -1105,6 +1105,7 @@ input:checked+.slider:before {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .main-prof-section h2 {
