@@ -17,7 +17,7 @@ Use the System only for lawful and school-related purposes.
 Not attempt to disrupt, hack, or misuse the System.
 Comply with all school policies and applicable laws.
 
-3. System Availability
+4. System Availability
 The System is provided "as is" without warranties.
 The school is not liable for any scheduling conflicts or technical issues.
 Maintenance or outages may occur without prior notice.
@@ -26,6 +26,7 @@ The school may update this Agreement. Users will be notified of significant chan
 Continued use implies acceptance.
 
 For questions or concerns, contact: BPC Faculty Head Sir Paulo Victoria / BSIS Department (Email niya dito / Phone Number dito) 
+
 
   BPsync Privacy Policy
 
