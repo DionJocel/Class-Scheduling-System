@@ -407,6 +407,7 @@ closeDelete.addEventListener('click', function () {
 
 permanentlyDelete.addEventListener('click', function () {
     alert('BYE BYE');
+    localStorage.setItem('isLoggedIn', 'false');
     // here yung code ng delete account
     window.location.href = 'index.html';
 });
