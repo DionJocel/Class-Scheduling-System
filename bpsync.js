@@ -506,6 +506,10 @@ editProfile.addEventListener('submit', function (e) {
         alert('Please enter a valid email address');
         return;
     }
+    if (!newEmail.includes('bpc.edu.ph')) {
+        alert('Please use the official bpc email');
+        return;
+    }
 
     else if (newPassword && newPassword !== confirmPassword) {
         alert('Passwords do not match!');

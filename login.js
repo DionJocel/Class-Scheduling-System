@@ -163,7 +163,7 @@ var valid = false;
 function validate(event) {
     event.preventDefault();
     const policyCheckbox = document.getElementById('policyCheckbox');
-    
+
     if (!policyCheckbox.checked) {
         alert('Please read and accept the User Agreement and Privacy Policy before logging in.');
         return false;
@@ -219,12 +219,12 @@ function validate(event) {
             }
         }
 
-         if (valid == true && attempts > 0) {
+        if (valid == true && attempts > 0) {
             let code = Math.floor(Math.random() * 899999) + 100000;
             const codeGeneratedTime = Date.now();
 
             let codeAttempt = prompt('Enter this 6-digit authentication code (valid for 20 seconds): ' + code);
-            
+
             if (codeAttempt == null) {
                 alert("You cancelled the authentication.");
                 return false;
@@ -266,7 +266,7 @@ function validate(event) {
 function signup(event) {
     event.preventDefault();
     const policyCheckbox = document.getElementById('policyCheckboxSignup');
-    
+
     if (!policyCheckbox.checked) {
         alert('Please read and accept the User Agreement and Privacy Policy before signing up.');
         return false;
@@ -280,6 +280,15 @@ function signup(event) {
     var validUser = false;
     var numReq = /.[0,1,2,3,4,5,6,7,8,9]/;
     var spcReq = /.[!,@,#,$,%,^,&,*,?,_,-,~,]/;
+
+    if (!newEmail.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    if (!newEmail.includes('bpc.edu.ph')) {
+        alert('Please use the official bpc email');
+        return;
+    }
 
     if (newUser === '' || newPass === '' || newUserId === '') {
         alert('Please fill in the form.');
@@ -304,7 +313,7 @@ function signup(event) {
                 passwordArray.push(newPass);
                 usernameIdArray.push(newUserId);
                 localStorage.setItem('currentUser', newEmail.split('@')[0]);
-                localStorage.setItem('userEmail', newEmail); 
+                localStorage.setItem('userEmail', newEmail);
                 localStorage.setItem('userId', newUserId);
                 localStorage.removeItem('userRole');
                 alert('You have registered successfully!');
