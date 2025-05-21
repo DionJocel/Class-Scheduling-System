@@ -23,6 +23,11 @@ body.dark-mode {
     color: white;
 }
 
+.dark-mode .fa-user:hover,
+.dark-mode .fa-gear:hover {
+    color: rgb(142, 142, 142);
+}
+
 .dark-mode-logo {
     display: none;
 }
