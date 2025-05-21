@@ -212,21 +212,28 @@ body {
 
 .rooms-display {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
     margin-top: 2dvh;
     animation: slideUp 0.6s ease-out 0.9s both;
 }
 
 .rooms-container {
+    background-color: #abd9e3;
     display: flex;
     flex-wrap: wrap;
     width: 90%;
     align-self: center;
-    gap: 3dvh;
+    gap: 1dvh;
+    margin: 3dvh 0;
+    justify-content: center;
+    border: 1px solid #BEBEBE;
+    padding: 2dvh 1dvh;
 }
 
-#roomBox {
+.room-box {
     width: 150px;
     height: 150px;
     display: flex;
