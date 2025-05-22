@@ -521,7 +521,7 @@ editProfile.addEventListener('submit', function (e) {
 
     if (newPassword && confirmPassword && newPassword === confirmPassword) {
         // leave ko to blank, database to backend
-         alert('Your Password has been changed successfully.')
+        alert('Your Password has been changed successfully.')
     }
 
     updateUserDisplay();
@@ -549,4 +549,20 @@ function updateUserDisplay() {
 
     document.getElementById('name').value = currentUser;
     document.getElementById('currentUser').textContent = currentUser;
+
+    const restrictedButtons = document.querySelectorAll('.block');
+
+    restrictedButtons.forEach(button => {
+        if (!userRole) {
+            // para sa mga non-admin users
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                alert('You are not authorized to access this section.');
+                button.disabled = true;
+            });
+        } else {
+            button.style.display = 'block';
+        }
+    });
 }

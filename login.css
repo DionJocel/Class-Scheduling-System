@@ -625,4 +625,25 @@ form input.button {
         width: 90%;
         margin: 10% auto;
     }
+
+    /* CSS SPLASH SCREEN DEDSKTOP */
+    .logo-animation {
+        animation: remove 0.1s ease 1.25s forwards;
+    }
+
+    .B {
+        animation: fadeScale 0s ease 0s forwards, invert 0s ease 0s forwards, move 0s ease 0s forwards, move4 0s ease 0s forwards;
+    }
+
+    .P {
+        animation: fadeIn 0s ease 0s forwards, move3 0s ease 0s forwards;
+    }
+
+    .sync {
+        animation: move2 0s ease 0s forwards, fadeIn 0s ease 0s forwards;
+    }
+
+    .main {
+        animation: appear 0.1s ease 1.25s forwards;
+    }
 }
