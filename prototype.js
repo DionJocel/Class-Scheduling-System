@@ -463,7 +463,7 @@ function printSchedulePreview(sched) {
     win.document.write(`
         <html>
         <head>
-            <title>Print or Save Schedule as PDF</title>
+            <title>BULACAN POLYTECHNIC COLLEGE</title>
             <style>
                 body { font-family: Arial, sans-serif; background: ${isDark ? '#222' : '#fff'}; color: ${isDark ? '#fff' : '#222'}; }
                 table { width: 100%; border-collapse: collapse; margin-top: 20px; }
