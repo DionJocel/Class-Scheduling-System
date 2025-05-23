@@ -1,338 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="stylesheet" href="bpsync.css">
-    <link rel="stylesheet" href="darkmode.css">
-    <link rel="stylesheet" href="mediaquery.css">
-    <link rel="icon" href="icon.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="bpsync.css" />
+    <link rel="stylesheet" href="darkmode.css" />
+    <link rel="stylesheet" href="mediaquery.css" />
+    <link rel="stylesheet" href="test.css" />
+    <link rel="icon" href="icon.png" type="image/x-icon" />
     <title>BPsync</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="main">
-        <div class="main-section">
-            <!-- Default View -->
-            <div class="default-view active" data-tab-content>
-                <div class="top-area">
-                    <i class="fa-solid fa-gear" id="settingIcon" class="setting-icon"></i>
-                    <i class="fa-solid fa-user" onclick="openProfile()"></i>
-                </div>
-                <div class="logo-container">
-                    <img src="Logo.png" class="light-mode-logo">
-                    <img src="Logo2.png" class="dark-mode-logo">
-                </div>
-                <div class="tabs-container">
-                    <div class="buttons-container">
-                        <div class="button restricted" data-tab-target="#generateTab">
-                            <div class="block" id="block"></div>
-                            <i class="fa-solid fa-file-circle-plus"></i>
-                            <h2>Generate Schedules</h2>
-                        </div>
-                        <div class="button" data-tab-target="#monitorTab">
-                            <i class="fa-solid fa-desktop"></i>
-                            <h2>Monitor Rooms</h2>
-                        </div>
-                        <div class="button" data-tab-target="#checkTab">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <h2>Check Schedules</h2>
-                        </div>
-                        <div class="button restricted" data-tab-target="#updateTab">
-                            <div class="block" id="block"></div>
-                            <i class="fa-solid fa-wifi""></i>
-                            <h2>Update Data</h2>
-                        </div>
-                    </div>
-                </div>
+      <div class="main-section">
+        <!-- Default View -->
+        <div class="default-view active" data-tab-content>
+          <div class="top-area">
+            <i
+              class="fa-solid fa-gear"
+              id="settingIcon"
+              class="setting-icon"
+            ></i>
+            <i class="fa-solid fa-user" onclick="openProfile()"></i>
+          </div>
+          <div class="logo-container">
+            <img src="Logo.png" class="light-mode-logo" />
+            <img src="Logo2.png" class="dark-mode-logo" />
+          </div>
+          <div class="tabs-container">
+            <div class="buttons-container">
+              <div class="button" data-tab-target="#generateTab">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <h2>Generate Schedules</h2>
+              </div>
+              <div class="button" data-tab-target="#monitorTab">
+                <i class="fa-solid fa-desktop"></i>
+                <h2>Monitor Rooms</h2>
+              </div>
+              <div class="button" data-tab-target="#checkTab">
+                <i class="fa-solid fa-calendar-days"></i>
+                <h2>Check Schedules</h2>
+              </div>
+              <div class="button" data-tab-target="#updateTab">
+                <i class="fa-solid fa-wifi"></i>
+                <h2>Update Data</h2>
+              </div>
             </div>
-
-            <!-- Tabs -->
-            <div id="generateTab" class="tab" data-tab-content>
-                <div class="top-area">
-                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
-                </div>
-                <div class="logo-container">
-                    <img src="Logo.png" class="light-mode-logo">
-                    <img src="Logo2.png" class="dark-mode-logo">
-                </div>
-                <h1>Generate Schedules blabla</h1>
-            </div>
-
-            <div id="monitorTab" class="tab" data-tab-content>
-                <div class="top-area">
-                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
-                </div>
-                <div class="logo-container">
-                    <img src="Logo.png" class="light-mode-logo">
-                    <img src="Logo2.png" class="dark-mode-logo">
-                </div>
-                <div class="rooms-display">
-                    <h2> All Rooms </h2>
-                    <div class="rooms-container" id="All">
-                        <div id="room1" class="room-box">
-                            <h1 id="roomNumber"> Room 1 </h1>
-                        </div>
-                        <div id="room2" class="room-box">
-                            <h1 id="roomNumber"> Room 2 </h1>
-                        </div>
-                        <div id="room3" class="room-box">
-                            <h1 id="roomNumber"> Room 3 </h1>
-                        </div>
-                        <div id="room4" class="room-box">
-                            <h1 id="roomNumber"> Room 4 </h1>
-                        </div>
-                    </div>
-                    <h2> Available Rooms </h2>
-                    <div class="rooms-container" id="Available">
-                        <div id="room1" class="room-box">
-                            <h1 id="roomNumber"> Room 1 </h1>
-                        </div>
-                        <div id="room2" class="room-box">
-                            <h1 id="roomNumber"> Room 2 </h1>
-                        </div>
-                    </div>
-                    <h2> Rooms currently in use </h2>
-                    <div class="rooms-container" id="Unavailable">
-                        <div id="room3" class="room-box">
-                            <h1 id="roomNumber"> Room 3 </h1>
-                        </div>
-                        <div id="room4" class="room-box"> 
-                            <h1 id="roomNumber"> Room 4 </h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div id="checkTab" class="tab" data-tab-content>
-                <div class="top-area">
-                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
-                </div>
-                <div class="logo-container">
-                    <img src="Logo.png" class="light-mode-logo">
-                    <img src="Logo2.png" class="dark-mode-logo">
-                </div>
-                <h1>Check Schedules blabla</h1>
-            </div>
-
-            <div id="updateTab" class="tab" data-tab-content>
-                <div class="top-area">
-                    <i class="fa-solid fa-right-to-bracket back-button" data-tab-target=".default-view"></i>
-                </div>
-                <div class="logo-container">
-                    <img src="Logo.png" class="light-mode-logo">
-                    <img src="Logo2.png" class="dark-mode-logo">
-                </div>
-                <div class="management-container">
-                    <div class="management-section top">
-                        <div class="top-add">
-                            <h3>Faculties</h3>
-                            <button class="add-new-btn" onclick="showFacultyForm()">Add New Faculty</button>
-                        </div>
-                        <div id="facultyList" class="item-list"></div>
-                    </div>
-                    <div class="management-section">
-                        <div class="top-add">
-                            <h3>Sections</h3>
-                            <button class="add-new-btn" onclick="showSectionForm()">Add New Section</button>
-                        </div>
-                        <div id="sectionList" class="item-list"></div>
-                    </div>
-                    <div class="management-section bottom">
-                        <div class="top-add">
-                            <h3>Rooms</h3>
-                            <button class="add-new-btn" onclick="showRoomForm()">Add New Room</button>
-                        </div>
-                        <div id="roomList" class="item-list"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="facultyOverlay" class="overlay">
-                <div class="overlay-content">
-                    <span class="close-btn" onclick="hideFacultyForm()">&times;</span>
-                    <h3>Add New Faculty</h3>
-                    <div class="form-group">
-                        <input type="text" id="facultyName" placeholder="Enter faculty name">
-                        <input type="text" id="facultyHead" placeholder="Enter faculty head">
-                    </div>
-                    <div class="form-group">
-                        <div class="radio-group">
-                            <label><input type="radio" name="employmentType" id="fullTime"
-                                    onchange="handleEmploymentTypeChange()"> Full Time</label>
-                            <label><input type="radio" name="employmentType" id="partTime"
-                                    onchange="handleEmploymentTypeChange()"> Part Time</label>
-                        </div>
-                    </div>
-                    <div class="form-group" id="shiftGroup">
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" id="amShift" onclick="handleShiftSelection('amShift')">
-                                AM</label>
-                            <label><input type="checkbox" id="pmShift" onclick="handleShiftSelection('pmShift')">
-                                PM</label>
-                        </div>
-                    </div>
-                    <button class="submit-btn" onclick="addFaculty()">Save</button>
-                </div>
-            </div>
-
-            <div id="sectionOverlay" class="overlay">
-                <div class="overlay-content">
-                    <span class="close-btn" onclick="hideSectionForm()">&times;</span>
-                    <h3>Add New Section</h3>
-                    <div class="form-group">
-                        <input type="text" id="sectionName" placeholder="Enter section name">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="adviserName" placeholder="Enter adviser name">
-                    </div>
-                    <button class="submit-btn" onclick="addSection()">Add Section</button>
-                </div>
-            </div>
-
-            <div id="roomOverlay" class="overlay">
-                <div class="overlay-content">
-                    <span class="close-btn" onclick="hideRoomForm()">&times;</span>
-                    <h3>Add New Room</h3>
-                    <div class="form-group">
-                        <input type="text" id="roomName" placeholder="Enter room name">
-                    </div>
-                    <button class="submit-btn" onclick="addRoom()">Add Room</button>
-                </div>
-            </div>
-
-            <div class="settings-sidebar" id="settingSidebar">
-                <div class="sidebar-header">
-                    <h2>Settings</h2>
-                    <span class="close-btn" id="closeSidebar">&times;</span>
-                </div>
-                <br>
-                <div class="sidebar-content">
-                    <div class="switch-row">
-                        <label class="switch-light-dark">
-                            <input type="checkbox" id="switch-light-dark">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="switch-label">Switch To Dark Mode</span>
-                    </div>
-                    <br>
-                    <div class="switch-row">
-                        <label class="switch-notification">
-                            <input type="checkbox" id="switch-notification">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="switch-label">Allow Notifications</span>
-                    </div>
-                    <br>
-                    <div class="import-button">
-                        <button id="openImportOverlay">Import<img src="import-icon.png"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="import-overlay-bg" id="importOverlayBg"></div>
-            <div class="import-overlay" id="importOverlay">
-                <div class="import-overlay-top">
-                    <h3>Import</h3>
-                    <span class="close-import" id="closeImportOverlay">&times;</span>
-                </div>
-                <div class="import-content">
-                    <div class="row1-import">
-                        <div class="faculty-import">
-                            <input type="file" name="facultyCsv" id="facultyCsv" accept=".csv" style="display:none;">
-                            <button type="button"
-                                onclick="document.getElementById('facultyCsv').click()">Faculty</button>
-                        </div>
-                        <div class="section-import">
-                            <input type="file" name="sectionCsv" id="sectionCsv" accept=".csv" style="display:none;">
-                            <button type="button"
-                                onclick="document.getElementById('sectionCsv').click();">Section</button>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row2-import">
-                        <div class="room-import">
-                            <input type="file" name="roomCsv" id="roomCsv" accept=".csv" style="display:none;">
-                            <button type="button"
-                                onclick="document.getElementById('roomCsv').click();">Room<br>Facility</button>
-                        </div>
-                        <div class="subject-import">
-                            <input type="file" name="subjectCsv" id="subjectCsv" accept=".csv" style="display:none;">
-                            <button type="button"
-                                onclick="document.getElementById('subjectCsv').click();">Subjects</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="overlay" id="profilePopupOne">
-                <div class="profile-popup-1">
-                    <div class="profile-row" data-tab-target="#profileTab" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <div class="column-2-prof">
-                            <h2 span class="current-user" id="currentUser"> Profile </h2>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="logout-row" id="logoutBtn">
-                        <img src="logout.png">
-                        <h3> Log Out</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="profile-tab tab" id="profileTab" data-tab-content>
-                <div class="profile-header">
-                    <h3 data-tab-target=".default-view"> &lt; </h3>
-                    <h2> Manage Account </h2>
-                </div>
-                <div class="main-prof-section">
-                    <div class="image-container">
-                        <img src="profile-image.png" id="profilePic">
-                    </div>
-                    <h2 span class="username" id="username"></h2>
-                    <h3 span class="role" id="role"></h3>
-                    <h3 span class="email" id="emailDisplay"></h3>
-                    <h3 span class="id" id="idDisplay"></h3>
-                    <hr class="profile-hr">
-                    <form id="editProfile">
-                        <label for="name"> Display Name* (Set whatever you want to be your name)</label>
-                        <input type="text" name="name" id="name" placeholder="Enter your display name">
-                        <label for="email"> Email* </label>
-                        <input type="email" name="email" id="email" placeholder="Enter your email">
-                        <label for="password"> Password* </label>
-                        <input type="password" name="password" id="password" placeholder="Change password">
-                        <i class="fa-solid fa-eye-slash" id="eyeIcon" onclick="showPass()"></i>
-                        <label for="confirmPassword"> Confirm Password* </label>
-                        <input type="password" name="confirmPassword" id="confirmPassword"
-                            placeholder="Confirm password">
-                        <i class="confirm fa-solid fa-eye-slash" id="eyeIcon2" onclick="showConfirmPass()"></i>
-                        <hr class="profile-hr second-hr">
-                        <div class="profile-buttons">
-                            <button type="button" id="deleteAcc"> Delete Account </button>
-                            <button type="submit" id="saveProfile"> Save </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="overlay" id="deletePopup">
-                    <div class="delete-confirmation">
-                        <i class="fa-regular fa-circle-xmark" id="closeDelete"></i>
-                        <div class="warning-img">
-                            <img src="warning.png">
-                        </div>
-                        <h2> Once you delete your account, there's no getting it back.</h2>
-                        <h2> Make sure you want to do this.</h2>
-                        <hr class="delete-hr">
-                        <div class="buttons-delete">
-                            <button type="submit" id="permanentlyDelete"> Yes, Delete Account </button>
-                            <button type="button" id="cancelDelete"> No, Keep it </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Tabs -->
+        <div id="generateTab" class="tab" data-tab-content>
+          <div class="top-area">
+            <i
+              class="fa-solid fa-right-to-bracket back-button"
+              data-tab-target=".default-view"
+            ></i>
+          </div>
+          <div class="logo-container">
+            <img src="Logo.png" class="light-mode-logo" />
+            <img src="Logo2.png" class="dark-mode-logo" />
+          </div>
+          <h1>Generate Schedules</h1>
+          <div class="gen-sched-container">
+            <div class="gen-sched-row">
+              <h2>Semester</h2>
+              <div class="semester-radio">
+                <input
+                  type="radio"
+                  name="semester"
+                  id="firstSemester"
+                  onclick="handleSemesterSelection('firstSemester')"
+                />
+                <label for="firstSemester">1st Semester</label>
+
+                <input
+                  type="radio"
+                  name="semester"
+                  id="secondSemester"
+                  onclick="handleSemesterSelection('secondSemester')"
+                />
+                <label for="secondSemester">2nd Semester</label>
+              </div>
+              <br />
+              <hr />
+            </div>
+
+            <div class="gen-sched-row" id="secondgenRow">
+              <h2>Course</h2>
+              <select name="course" id="course" required>
+                <option value="" selected></option>
+                <option value="BSIS">BSIS</option>
+                <option value="BTVTED">BTVTED</option>
+                <option value="BSOM">BSOM</option>
+                <option value="ACT">ACT</option>
+                <option value="HRS">HRS</option>
+              </select>
+
+              <h2>Year</h2>
+              <select name="yrSemester" id="yrSemester" required>
+                <option value="" selected></option>
+                <option value="firstYear">1st Year</option>
+                <option value="secondYear">2nd Year</option>
+                <option value="thirdtYear">3rd Year</option>
+                <option value="fourthYear">4th Year</option>
+              </select>
+
+              <h2>Section</h2>
+              <select name="section" id="chooseSection">
+                <option value="" selected></option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+              </select>
+            </div>
+            <hr />
+            <button id="generateBtn" onclick="generateSchedules()">
+              <i class="fa-solid fa-gears"></i>Generate
+            </button>
+          </div>
+
+          <div class="previewSchedule" id="previewSchedule">
+            <h2>Schedule Preview</h2>
+            <div class="preview-header">
+              <div class="col1-preview">
+                <h3 id="previewSemester">First Semester</h3>
+                <h3 id="previewCourseYearSection">BSIS1B</h3>
+              </div>
+              <div class="col2-preview">
+                <h3 id="previewAcademicYear">2025-2026</h3>
+              </div>
+            </div>
+            <table id="previewTable">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Day/Time</th>
+                  <th>Room</th>
+                  <th>Faculty</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="preview-buttons">
+              <button onclick="saveSchedule">Save Schedule</button>
+              <button onclick="printSchedule">Print</button>
+            </div>
+          </div>
+        </div>
+
+        <!--DASHBOARD-->
+        <div id="monitorTab" class="tab" data-tab-content>
+          <div class="top-area">
+            <i
+              class="fa-solid fa-right-to-bracket back-button"
+              data-tab-target=".default-view"
+            ></i>
+          </div>
+          <div class="logo-container">
+            <img src="Logo.png" class="light-mode-logo" />
+            <img src="Logo2.png" class="dark-mode-logo" />
+          </div>
+          <div class="rooms-display">
+            <h2>All Rooms</h2>
+            <div class="rooms-container" id="All"></div>
+            <h2>Available Rooms</h2>
+            <div class="rooms-container" id="Available"></div>
+            <h2>Rooms currently in use</h2>
+            <div class="rooms-container" id="Unavailable"></div>
+          </div>
+        </div>
+
+        <!--CHECK SCHED-->
+        <div id="checkTab" class="tab" data-tab-content>
+          <div class="top-area">
+            <i
+              class="fa-solid fa-right-to-bracket back-button"
+              data-tab-target=".default-view"
+            ></i>
+          </div>
+
+          <div class="logo-container">
+            <img src="Logo.png" class="light-mode-logo" />
+            <img src="Logo2.png" class="dark-mode-logo" />
+          </div>
+
+          <h1>Check Schedules</h1>
+
+          <!-- Added: Schedule List and Preview Section -->
+          <div id="scheduleListContainer" style="margin: 30px 0">
+            <h2>Saved Schedules</h2>
+            <div id="scheduleList"></div>
+          </div>
+          <div id="schedulePreviewContainer" style="display: none">
+            <h2>Schedule Preview</h2>
+            <div id="schedulePreviewHeader"></div>
+            <table id="schedulePreviewTable">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Day/Time</th>
+                  <th>Room</th>
+                  <th>Faculty</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div style="margin-top: 15px">
+              <button id="printScheduleBtn">Print / Save as PDF</button>
+            </div>
+          </div>
+        </div>
+
+        <!--UPDATE DATA-->
+
+        <div id="updateTab" class="tab" data-tab-content>
+          <div class="top-area">
+            <i
+              class="fa-solid fa-right-to-bracket back-button"
+              data-tab-target=".default-view"
+            ></i>
+          </div>
+          <div class="logo-container">
+            <img src="Logo.png" class="light-mode-logo" />
+            <img src="Logo2.png" class="dark-mode-logo" />
+          </div>
+          <div class="management-container">
+            <div class="management-section top">
+              <div class="top-add">
+                <h3>Faculties</h3>
+                <button class="add-new-btn" onclick="showFacultyForm()">
+                  Add New Faculty
+                </button>
+              </div>
+              <div id="facultyList" class="item-list"></div>
+            </div>
+            <div class="management-section">
+              <div class="top-add">
+                <h3>Sections</h3>
+                <button class="add-new-btn" onclick="showSectionForm()">
+                  Add New Section
+                </button>
+              </div>
+              <div id="sectionList" class="item-list"></div>
+            </div>
+            <div class="management-section">
+              <div class="top-add">
+                <h3>Subjects</h3>
+                <button class="add-new-btn" onclick="showSubjectForm()">
+                  Add New Subject
+                </button>
+              </div>
+              <div id="subjectList" class="item-list"></div>
+            </div>
+            <div class="management-section bottom">
+              <div class="top-add">
+                <h3>Rooms</h3>
+                <button class="add-new-btn" onclick="showRoomForm()">
+                  Add New Room
+                </button>
+              </div>
+              <div id="roomList" class="item-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="facultyOverlay" class="overlay">
+          <div class="overlay-content">
+            <span class="close-btn" onclick="hideFacultyForm()">&times;</span>
+            <h3>Add New Faculty</h3>
+            <div class="form-group">
+              <input
+                type="text"
+                id="facultyName"
+                placeholder="Enter faculty name"
+              />
+              <input
+                type="text"
+                id="facultyHead"
+                placeholder="Enter faculty head"
+              />
+            </div>
+            <div class="form-group">
+              <div class="radio-group">
+                <label
+                  ><input
+                    type="radio"
+                    name="employmentType"
+                    id="fullTime"
+                    onchange="handleEmploymentTypeChange()"
+                  />
+                  Full Time</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="employmentType"
+                    id="partTime"
+                    onchange="handleEmploymentTypeChange()"
+                  />
+                  Part Time</label
+                >
+              </div>
+            </div>
+            <div class="form-group" id="shiftGroup">
+              <div class="checkbox-group">
+                <label
+                  ><input
+                    type="checkbox"
+                    id="amShift"
+                    onclick="handleShiftSelection('amShift')"
+                  />
+                  AM</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
+                    id="pmShift"
+                    onclick="handleShiftSelection('pmShift')"
+                  />
+                  PM</label
+                >
+              </div>
+            </div>
+            <button class="submit-btn" onclick="addFaculty()">Save</button>
+          </div>
+        </div>
+
+        <div id="sectionOverlay" class="overlay">
+          <div class="overlay-content">
+            <span class="close-btn" onclick="hideSectionForm()">&times;</span>
+            <h3>Add New Section</h3>
+            <div class="form-group">
+              <input
+                type="text"
+                id="sectionName"
+                placeholder="Enter section name"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="adviserName"
+                placeholder="Enter adviser name"
+              />
+            </div>
+            <button class="submit-btn" onclick="addSection()">
+              Add Section
+            </button>
+          </div>
+        </div>
+
+        <div id="roomOverlay" class="overlay">
+          <div class="overlay-content">
+            <span class="close-btn" onclick="hideRoomForm()">&times;</span>
+            <h3>Add New Room</h3>
+            <div class="form-group">
+              <input type="text" id="roomName" placeholder="Enter room name" />
+            </div>
+            <button class="submit-btn" onclick="addRoom()">Add Room</button>
+          </div>
+        </div>
+
+        <div id="subjectOverlay" class="overlay">
+          <div class="overlay-content">
+            <span class="close-btn" onclick="hideSubjectForm()">&times;</span>
+            <h3>Add New Subject</h3>
+            <div class="form-group">
+              <input
+                type="text"
+                id="subjectCode"
+                placeholder="Subject code (e.g., IS-FIS 123)"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="subjectName"
+                placeholder="Subject name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <select id="subjectCourse" required>
+                <option value="" disabled selected>Select Course</option>
+                <option value="BSIS">BSIS</option>
+                <option value="BTVTED">BTVTED</option>
+                <option value="BSOM">BSOM</option>
+                <option value="ACT">ACT</option>
+                <option value="HRS">HRS</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select id="subjectYear" required>
+                <option value="" disabled selected>Select Year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select id="subjectSemester" required>
+                <option value="" disabled selected>Select Semester</option>
+                <option value="firstSemester">1st Semester</option>
+                <option value="secondSemester">2nd Semester</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input
+                type="number"
+                id="subjectHours"
+                placeholder="Credit hours (e.g., 3)"
+                min="1"
+                max="5"
+                required
+              />
+            </div>
+            <button class="submit-btn" onclick="addSubject()">
+              Add Subject
+            </button>
+          </div>
+        </div>
+
+        <div class="settings-sidebar" id="settingSidebar">
+          <div class="sidebar-header">
+            <h2>Settings</h2>
+            <span class="close-btn" id="closeSidebar">&times;</span>
+          </div>
+          <br />
+          <div class="sidebar-content">
+            <div class="switch-row">
+              <label class="switch-light-dark">
+                <input type="checkbox" id="switch-light-dark" />
+                <span class="slider round"></span>
+              </label>
+              <span class="switch-label">Switch To Dark Mode</span>
+            </div>
+            <br />
+            <div class="switch-row">
+              <label class="switch-notification">
+                <input type="checkbox" id="switch-notification" />
+                <span class="slider round"></span>
+              </label>
+              <span class="switch-label">Allow Notifications</span>
+            </div>
+            <br />
+            <div class="import-button">
+              <button id="openImportOverlay">
+                Import<img src="import-icon.png" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="import-overlay-bg" id="importOverlayBg"></div>
+        <div class="import-overlay" id="importOverlay">
+          <div class="import-overlay-top">
+            <h3>Import</h3>
+            <span class="close-import" id="closeImportOverlay">&times;</span>
+          </div>
+          <div class="import-content">
+            <div class="row1-import">
+              <div class="faculty-import">
+                <input
+                  type="file"
+                  name="facultyCsv"
+                  id="facultyCsv"
+                  accept=".csv"
+                  style="display: none"
+                />
+                <button
+                  type="button"
+                  onclick="document.getElementById('facultyCsv').click()"
+                >
+                  Faculty
+                </button>
+              </div>
+              <div class="section-import">
+                <input
+                  type="file"
+                  name="sectionCsv"
+                  id="sectionCsv"
+                  accept=".csv"
+                  style="display: none"
+                />
+                <button
+                  type="button"
+                  onclick="document.getElementById('sectionCsv').click();"
+                >
+                  Section
+                </button>
+              </div>
+            </div>
+            <br />
+            <div class="row2-import">
+              <div class="room-import">
+                <input
+                  type="file"
+                  name="roomCsv"
+                  id="roomCsv"
+                  accept=".csv"
+                  style="display: none"
+                />
+                <button
+                  type="button"
+                  onclick="document.getElementById('roomCsv').click();"
+                >
+                  Room<br />Facility
+                </button>
+              </div>
+              <div class="subject-import">
+                <input
+                  type="file"
+                  name="subjectCsv"
+                  id="subjectCsv"
+                  accept=".csv"
+                  style="display: none"
+                />
+                <button
+                  type="button"
+                  onclick="document.getElementById('subjectCsv').click();"
+                >
+                  Subjects
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay" id="profilePopupOne">
+          <div class="profile-popup-1">
+            <div
+              class="profile-row"
+              data-tab-target="#profileTab"
+              onclick="closePopup()"
+            >
+              <i class="fa-solid fa-circle-user"></i>
+              <div class="column-2-prof">
+                <h2 span class="current-user" id="currentUser">Profile</h2>
+              </div>
+            </div>
+            <hr />
+            <div class="logout-row" id="logoutBtn">
+              <img src="logout.png" />
+              <h3>Log Out</h3>
+            </div>
+          </div>
+        </div>
+        <div class="profile-tab tab" id="profileTab" data-tab-content>
+          <div class="profile-header">
+            <h3 data-tab-target=".default-view">&lt;</h3>
+            <h2>Manage Account</h2>
+          </div>
+          <div class="main-prof-section">
+            <div class="image-container">
+              <img src="profile-image.png" id="profilePic" />
+            </div>
+            <h2 span class="username" id="username"></h2>
+            <h3 span class="role" id="role"></h3>
+            <h3 span class="email" id="emailDisplay"></h3>
+            <h3 span class="id" id="idDisplay"></h3>
+            <hr class="profile-hr" />
+            <form id="editProfile">
+              <label for="name">
+                Display Name* (Set whatever you want to be your name)</label
+              >
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter your display name"
+              />
+              <label for="email"> Email* </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter your email"
+              />
+              <label for="password"> Password* </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Change password"
+              />
+              <i
+                class="fa-solid fa-eye-slash"
+                id="eyeIcon"
+                onclick="showPass()"
+              ></i>
+              <label for="confirmPassword"> Confirm Password* </label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="Confirm password"
+              />
+              <i
+                class="confirm fa-solid fa-eye-slash"
+                id="eyeIcon2"
+                onclick="showConfirmPass()"
+              ></i>
+              <hr class="profile-hr second-hr" />
+              <div class="profile-buttons">
+                <button type="button" id="deleteAcc">Delete Account</button>
+                <button type="submit" id="saveProfile">Save</button>
+              </div>
+            </form>
+          </div>
+          <div class="overlay" id="deletePopup">
+            <div class="delete-confirmation">
+              <i class="fa-regular fa-circle-xmark" id="closeDelete"></i>
+              <div class="warning-img">
+                <img src="warning.png" />
+              </div>
+              <h2>Once you delete your account, there's no getting it back.</h2>
+              <h2>Make sure you want to do this.</h2>
+              <hr class="delete-hr" />
+              <div class="buttons-delete">
+                <button type="submit" id="permanentlyDelete">
+                  Yes, Delete Account
+                </button>
+                <button type="button" id="cancelDelete">No, Keep it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="bpsync.js"></script>
-</body>
-
+    <script src="prototype.js"></script>
+  </body>
 </html>

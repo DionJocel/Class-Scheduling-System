@@ -14,6 +14,9 @@
     opacity: 1;
 }
 
+/* --- Dark Mode Overrides --- */
+
+/* General */
 body.dark-mode {
     background: linear-gradient(to bottom, #211A2A 30%, #705890);
 }
@@ -21,11 +24,6 @@ body.dark-mode {
 .dark-mode .fa-user,
 .dark-mode .fa-gear {
     color: white;
-}
-
-.dark-mode .fa-user:hover,
-.dark-mode .fa-gear:hover {
-    color: rgb(142, 142, 142);
 }
 
 .dark-mode-logo {
@@ -69,6 +67,7 @@ body.dark-mode {
     color: white;
 }
 
+/* Management Section */
 .dark-mode .management-section {
     background: #211A2A;
     box-shadow: 0 0px 7px rgba(255, 255, 255, 0.1);
@@ -121,10 +120,12 @@ body.dark-mode {
     border: 1px solid #dee2e6;
 }
 
+/* Overlay */
 .dark-mode .overlay-content {
     background: #35224C;
 }
 
+/* Sidebar */
 .dark-mode .sidebar-header,
 .dark-mode .sidebar-header span {
     background: #8DD737;
@@ -136,6 +137,7 @@ body.dark-mode {
     color: white;
 }
 
+/* Import Button */
 .dark-mode .import-button button {
     background-color: #8DD737;
     color: black;
@@ -146,6 +148,7 @@ body.dark-mode {
     background-color: #8DD737;
 }
 
+/* Profile Popup */
 .dark-mode .profile-popup-1 {
     background-color: #35224C;
     color: white;
@@ -203,4 +206,101 @@ body.dark-mode {
 .dark-mode .email,
 .dark-mode .id {
     color: white;
+}
+
+/* Check Schedules Tab */
+.dark-mode #checkTab,
+.dark-mode #scheduleListContainer,
+.dark-mode #schedulePreviewContainer {
+    background: #23272e;
+    color: #e0e0e0;
+}
+
+.dark-mode #scheduleListContainer h2,
+.dark-mode #schedulePreviewContainer h2,
+.dark-mode #schedulePreviewHeader h3,
+.dark-mode #schedulePreviewHeader h4 {
+    color: #baffb2;
+}
+
+.dark-mode #scheduleList button {
+    background: #222;
+    color: #baffb2;
+    border: 1px solid #28AA1F;
+}
+.dark-mode #scheduleList button:hover {
+    background: #28AA1F;
+    color: #fff;
+}
+
+.dark-mode #schedulePreviewTable {
+    background: #23272e;
+}
+
+.dark-mode #schedulePreviewTable th {
+    background: #28AA1F;
+    color: #fff;
+}
+
+.dark-mode #schedulePreviewTable td {
+    color: #e0e0e0;
+    background: #23272e;
+}
+
+.dark-mode #schedulePreviewContainer button {
+    background: #222;
+    color: #baffb2;
+    border: 1px solid #28AA1F;
+}
+.dark-mode #schedulePreviewContainer button:hover {
+    background: #28AA1F;
+    color: #fff;
+}
+
+/* Monitor Rooms */
+.dark-mode #monitorTab .rooms-display {
+    background: #23272e;
+    color: #e0e0e0;
+}
+
+.dark-mode .room-box {
+    background: #23272e;
+    color: #baffb2;
+    border-color: #28AA1F;
+}
+
+.dark-mode .room-box.available {
+    background: #1e2b1e;
+    color: #baffb2;
+}
+
+.dark-mode .room-box.unavailable {
+    background: #2e2323;
+    color: #ffb2b2;
+    border-color: #D80000;
+}
+
+/* Subject Item Styling */
+.dark-mode .subject-item {
+    background-color: var(--dark-item-bg);
+    border: 1px solid var(--dark-border);
+}
+
+.dark-mode .subject-item .subj-code {
+    color: var(--dark-primary);
+}
+
+.dark-mode .subject-item .subj-name {
+    color: var(--dark-text);
+}
+
+.dark-mode .subject-item .subj-details {
+    color: var(--dark-secondary);
+}
+
+.dark-mode #subjectOverlay .form-group select,
+.dark-mode #subjectOverlay .form-group input {
+    background-color: var(--dark-input-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
 }
