@@ -120,6 +120,10 @@ body.dark-mode {
     border: 1px solid #dee2e6;
 }
 
+.dark-mode #subjectList {
+    color: white;
+}
+
 /* Overlay */
 .dark-mode .overlay-content {
     background: #35224C;
@@ -208,11 +212,26 @@ body.dark-mode {
     color: white;
 }
 
+.dark-mode .gen-sched-container {
+    background: #211A2A;
+}
+
+.dark-mode .gen-sched-container label {
+    color: #ffffff;
+}
+
+.dark-mode .gen-sched-row h2 {
+    color: white;
+}
+
+.dark-mode #secondgenRow h2 {
+    color: #ffffff;
+}
+
 /* Check Schedules Tab */
-.dark-mode #checkTab,
 .dark-mode #scheduleListContainer,
 .dark-mode #schedulePreviewContainer {
-    background: #23272e;
+    background: #211A2A;
     color: #e0e0e0;
 }
 
@@ -228,6 +247,7 @@ body.dark-mode {
     color: #baffb2;
     border: 1px solid #28AA1F;
 }
+
 .dark-mode #scheduleList button:hover {
     background: #28AA1F;
     color: #fff;
@@ -252,6 +272,7 @@ body.dark-mode {
     color: #baffb2;
     border: 1px solid #28AA1F;
 }
+
 .dark-mode #schedulePreviewContainer button:hover {
     background: #28AA1F;
     color: #fff;
@@ -259,7 +280,8 @@ body.dark-mode {
 
 /* Monitor Rooms */
 .dark-mode #monitorTab .rooms-display {
-    background: #23272e;
+    background: #211A2A;
+    border: 1px solid #fff;
     color: #e0e0e0;
 }
 

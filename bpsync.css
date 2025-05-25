@@ -701,13 +701,13 @@ span.shift {
     margin-bottom: 10px;
     border-radius: 8px;
     position: relative;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
 .subject-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .subject-item .subj-code {
@@ -1299,6 +1299,7 @@ input:checked+.slider:before {
     color: #555;
     margin-top: 5px;
 }
+
 /*       <div class="gen-sched-container">
 
                     <div class="gen-sched-row">
@@ -1333,6 +1334,7 @@ input:checked+.slider:before {
 */
 
 .gen-sched-container {
+    animation: slideUp 0.6s ease-out 0.6s both;
     font-family: "Poppins", sans-serif;
     display: flex;
     background-color: #ffffff;
@@ -1348,6 +1350,7 @@ input:checked+.slider:before {
     box-shadow: 0px 0px 10px #636363;
     margin-bottom: 2dvh;
 }
+
 .gen-sched-container hr {
     width: 40dvw;
     border: 1px solid rgb(200, 223, 200);
@@ -1363,6 +1366,7 @@ input:checked+.slider:before {
 #secondgenRow select {
     width: 7dvw;
 }
+
 #secondgenRow h2 {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -1381,18 +1385,20 @@ input:checked+.slider:before {
     margin-bottom: 10px;
     text-indent: 5px;
 }
+
 .semester-radio {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 20px;
 }
+
 .gen-sched-container input[type="radio"] {
     margin-right: 10px;
     accent-color: green;
-    transform: scale(1.5);  
-
+    transform: scale(1.5);
 }
+
 .gen-sched-container input[type="radio"]:checked {
     background-color: green;
 }
@@ -1405,6 +1411,7 @@ input:checked+.slider:before {
     color: #555;
     margin-top: 5px;
 }
+
 .gen-sched-row {
     display: flex;
     flex-direction: column;
@@ -1412,6 +1419,7 @@ input:checked+.slider:before {
     align-items: center;
     margin-bottom: 20px;
 }
+
 .gen-sched-row h2 {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -1421,7 +1429,7 @@ input:checked+.slider:before {
     margin-bottom: 5px;
 }
 
-#generateBtn{
+#generateBtn {
     margin-top: 10vh;
     background-color: #28AA1F;
     color: white;
@@ -1436,7 +1444,7 @@ input:checked+.slider:before {
     transition: 0.5s ease;
 }
 
-#generateBtn:hover{
+#generateBtn:hover {
     background-color: #71d50d;
     color: black;
 }
@@ -1456,6 +1464,7 @@ input:checked+.slider:before {
     box-shadow: 0 2px 8px #0001;
     padding: 20px;
     margin-bottom: 20px;
+    animation: slideUp 0.6s ease-out 0.8s both;
 }
 
 #scheduleListContainer h2 {
@@ -1480,6 +1489,7 @@ input:checked+.slider:before {
     cursor: pointer;
     transition: background 0.2s;
 }
+
 #scheduleList button:hover {
     background: #1e7e16;
 }
@@ -1500,7 +1510,8 @@ input:checked+.slider:before {
     margin-bottom: 10px;
 }
 
-#schedulePreviewHeader h3, #schedulePreviewHeader h4 {
+#schedulePreviewHeader h3,
+#schedulePreviewHeader h4 {
     margin: 0;
     font-family: "Poppins", sans-serif;
     color: #222;
@@ -1515,7 +1526,8 @@ input:checked+.slider:before {
     overflow: hidden;
 }
 
-#schedulePreviewTable th, #schedulePreviewTable td {
+#schedulePreviewTable th,
+#schedulePreviewTable td {
     border: 1px solid #e0e0e0;
     padding: 10px 8px;
     text-align: left;
@@ -1545,6 +1557,7 @@ input:checked+.slider:before {
     cursor: pointer;
     transition: background 0.2s;
 }
+
 #schedulePreviewContainer button:hover {
     background: #1e7e16;
     color: #fff;
@@ -1559,6 +1572,8 @@ input:checked+.slider:before {
     box-shadow: 0 2px 8px #0001;
     padding: 30px 20px;
     text-align: center;
+    border: 1px solid #000000;
+    animation: slideUp 0.6s ease-out 0.8s both;
 }
 
 .rooms-display h2 {
@@ -1608,6 +1623,7 @@ input:checked+.slider:before {
     border-color: #D80000;
     color: #D80000;
 }
+
 /*                <div class="previewSchedule">
                 <h2>Schedule Preview</h2>
                 <div class="preview-header">
@@ -1643,7 +1659,7 @@ input:checked+.slider:before {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .preview-header {
@@ -1658,7 +1674,8 @@ input:checked+.slider:before {
     margin: 15px 0;
 }
 
-#previewTable th, #previewTable td {
+#previewTable th,
+#previewTable td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
@@ -1683,4 +1700,13 @@ input:checked+.slider:before {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.block {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 20px;
+    background-color: #1c1b1b23;
 }

@@ -34,7 +34,8 @@
           </div>
           <div class="tabs-container">
             <div class="buttons-container">
-              <div class="button" data-tab-target="#generateTab">
+              <div class="button restricted" data-tab-target="#generateTab">
+                <div class="block"></div>
                 <i class="fa-solid fa-file-circle-plus"></i>
                 <h2>Generate Schedules</h2>
               </div>
@@ -46,7 +47,8 @@
                 <i class="fa-solid fa-calendar-days"></i>
                 <h2>Check Schedules</h2>
               </div>
-              <div class="button" data-tab-target="#updateTab">
+              <div class="button restricted" data-tab-target="#updateTab">
+                <div class="block"></div>
                 <i class="fa-solid fa-wifi"></i>
                 <h2>Update Data</h2>
               </div>
@@ -536,12 +538,11 @@
           </div>
         </div>
 
-        <div class="overlay" id="profilePopupOne">
+        <div class="overlay" id="profilePopupOne" onclick="closePopup()">
           <div class="profile-popup-1">
             <div
               class="profile-row"
               data-tab-target="#profileTab"
-              onclick="closePopup()"
             >
               <i class="fa-solid fa-circle-user"></i>
               <div class="column-2-prof">

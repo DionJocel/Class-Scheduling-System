@@ -92,6 +92,30 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+
+    const userRole = localStorage.getItem('userRole', role);
+    const isAdmin = userRole;
+    const restrictedButtons = document.querySelectorAll('.restricted');
+
+    restrictedButtons.forEach(button => {
+        const blockElement = button.querySelector('.block');
+
+        if (isAdmin) {
+            if (blockElement) blockElement.style.display = 'none';
+            button.style.opacity = '1';
+        } else {
+            if (blockElement) blockElement.style.display = 'block';
+            button.style.opacity = '0.6';
+
+            if (blockElement) {
+                blockElement.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    alert('You are not authorized to access this section.');
+                });
+            }
+        }
+    });
 });
 
 // 2. Faculty Management
@@ -206,7 +230,7 @@ function editFaculty(button) {
 
     item.remove();
     removeFacultyFromStorage(id);
-    
+
     showFacultyForm();
 }
 
@@ -246,7 +270,7 @@ function addSection() {
 
     // eto call nanaman
     addSectionToUI(section);
-    saveSectionToStorage(section);m
+    saveSectionToStorage(section); m
     clearSectionForm();
     hideSectionForm();
 }
@@ -283,14 +307,14 @@ function editSection(button) {
     const name = item.querySelector('.fac-name').textContent.replace('•', '').trim();
     const adviser = item.querySelector('.fac-head').textContent.replace('• Section adviser:', '').trim();
 
-  
+
     document.getElementById('sectionName').value = name;
     document.getElementById('adviserName').value = adviser;
 
- 
+
     item.remove();
     removeSectionFromStorage(id);
-    
+
     showSectionForm();
 }
 
@@ -365,7 +389,7 @@ function editRoom(button) {
 
     document.getElementById('roomName').value = name;
     item.remove();
-    removeRoomFromStorage(id);    
+    removeRoomFromStorage(id);
     showRoomForm();
 }
 
@@ -383,7 +407,7 @@ function removeItem(button) {
     if (confirm('Are you sure you want to remove this item?')) {
         const item = button.closest('.faculty-item, .section-item, .room-item, .subject-item');
         const id = item.dataset.id;
-        
+
         if (item.classList.contains('faculty-item')) {
             removeFacultyFromStorage(id);
         } else if (item.classList.contains('section-item')) {
@@ -394,25 +418,25 @@ function removeItem(button) {
             const code = item.querySelector('.subj-code').textContent.replace('•', '').trim();
             removeSubjectFromStorage(code);
         }
-        
+
         item.remove();
     }
 }
 
 // 7. deyta lowding
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Load faculties
     const faculties = JSON.parse(localStorage.getItem('faculties')) || [];
     faculties.forEach(faculty => addFacultyToUI(faculty));
-    
+
     // Load sections
     const sections = JSON.parse(localStorage.getItem('sections')) || [];
     sections.forEach(section => addSectionToUI(section));
-    
+
     // Load rooms
     const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
     rooms.forEach(room => addRoomToUI(room));
-    
+
     // Load subjects 
     const subjects = JSON.parse(localStorage.getItem('subjects')) || [];
     subjects.forEach(subject => addSubjectToUI(subject));
@@ -650,7 +674,7 @@ editProfile.addEventListener('submit', function (e) {
 
     if (newPassword && confirmPassword && newPassword === confirmPassword) {
         // leave ko to blank, database to backend
-         alert('Your Password has been changed successfully.')
+        alert('Your Password has been changed successfully.')
     }
 
     updateUserDisplay();
@@ -684,44 +708,44 @@ function updateUserDisplay() {
 function parseCSV(file, type) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        
-        reader.onload = function(e) {
+
+        reader.onload = function (e) {
             try {
                 const content = e.target.result;
                 const lines = content.split('\n').filter(line => line.trim() !== '');
-                
+
                 if (lines.length < 2) {
                     throw new Error('CSV file is empty or has no data rows');
                 }
-                
+
                 const headers = lines[0].split(',').map(h => h.trim());
                 const data = [];
-                
+
                 for (let i = 1; i < lines.length; i++) {
                     const values = lines[i].split(',');
                     const item = {};
-                    
+
                     for (let j = 0; j < headers.length; j++) {
                         if (j < values.length) {
                             item[headers[j]] = values[j].trim();
                         }
                     }
-                    
+
                     data.push(item);
                 }
-                
-                
+
+
                 const processedData = processImportedData(data, type);
                 resolve(processedData);
             } catch (error) {
                 reject(error);
             }
         };
-        
-        reader.onerror = function() {
+
+        reader.onerror = function () {
             reject(new Error('Error reading file'));
         };
-        
+
         reader.readAsText(file);
     });
 }
@@ -736,26 +760,26 @@ function processImportedData(data, type) {
                 shift: item.Shift || item.shift || (item.Type === 'Full Time' ? 'AM/PM' : 'PM'),
                 id: Date.now().toString() + Math.floor(Math.random() * 1000)
             }));
-            
+
         case 'section':
             return data.map(item => ({
                 name: item.Name || item.name || item.Section || '',
                 adviser: item.Adviser || item.adviser || '',
                 id: Date.now().toString() + Math.floor(Math.random() * 1000)
             }));
-            
+
         case 'room':
             return data.map(item => ({
                 name: item.Name || item.name || item.Room || '',
                 id: Date.now().toString() + Math.floor(Math.random() * 1000)
             }));
-            
+
         case 'subject':
             return data.map(item => {
                 // Normalize semester values
                 let semester = item.Semester || item.semester || '1';
                 semester = semester.toString().includes('1') ? 'firstSemester' : 'secondSemester';
-                
+
                 return {
                     code: item.Code || item.code || '',
                     name: item.Name || item.name || '',
@@ -765,7 +789,7 @@ function processImportedData(data, type) {
                     hours: item.Hours || item.hours || '3'
                 };
             });
-            
+
         default:
             throw new Error('Unknown import type');
     }
@@ -801,15 +825,15 @@ async function importCSVData(file, type) {
             importButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Importing...';
             importButton.disabled = true;
         }
-        
+
         // Parse CSV
         const importedData = await parseCSV(file, type);
-        
+
         // Validate data
         if (importedData.length === 0) {
             throw new Error('No valid data found in CSV');
         }
-        
+
         // Process and save data
         switch (type) {
             case 'faculty':
@@ -818,21 +842,21 @@ async function importCSVData(file, type) {
                     saveFacultyToStorage(faculty);
                 });
                 break;
-                
+
             case 'section':
                 importedData.forEach(section => {
                     addSectionToUI(section);
                     saveSectionToStorage(section);
                 });
                 break;
-                
+
             case 'room':
                 importedData.forEach(room => {
                     addRoomToUI(room);
                     saveRoomToStorage(room);
                 });
                 break;
-                
+
             case 'subject':
                 importedData.forEach(subject => {
                     addSubjectToUI(subject);
@@ -840,9 +864,9 @@ async function importCSVData(file, type) {
                 });
                 break;
         }
-        
+
         alert(`Successfully imported ${importedData.length} ${type} records`);
-        
+
     } catch (error) {
         console.error(`Error importing ${type}:`, error);
         alert(`Error importing ${type}: ${error.message}`);
@@ -856,7 +880,7 @@ async function importCSVData(file, type) {
             }
             importButton.disabled = false;
         }
-        
+
         // Reset file input
         const fileInput = document.getElementById(`${type}Csv`);
         if (fileInput) {
