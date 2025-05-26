@@ -1,12 +1,11 @@
-// 1. Constants & Initialization
 const WORKING_HOURS = {
     AM: { start: 7, end: 12 },
     PM: { start: 13, end: 20 }
 };
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'];
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const TIME_SLOTS = [
     '8:00 AM - 9:00 AM', '9:00 AM - 10:00 AM', '10:00 AM - 11:00 AM', '11:00 AM - 12:00 PM',
-    '1:00 PM - 2:00 PM', '2:00 PM - 3:00 PM', '3:00 PM - 4:00 PM', '4:00 PM - 5:00 PM','5:00 PM - 6:00 PM',
+    '1:00 PM - 2:00 PM', '2:00 PM - 3:00 PM', '3:00 PM - 4:00 PM', '4:00 PM - 5:00 PM', '5:00 PM - 6:00 PM',
     '6:00 PM - 7:00 PM', '7:00 PM - 8:00 PM'
 ];
 
@@ -43,7 +42,7 @@ function updatePreview() {
         document.getElementById("previewCourseYearSection").textContent =
             `${course}${yearNumber}${section}`;
     }
-    // Set academic year
+    // acad year
     const currentYear = new Date().getFullYear();
     document.getElementById("previewAcademicYear").textContent = `${currentYear}-${currentYear + 1}`;
 }
@@ -51,7 +50,6 @@ function updatePreview() {
 // 3. Schedule Generation & Display
 function generateSchedules() {
     try {
-        // Get input values
         const semesterInput = document.querySelector('input[name="semester"]:checked');
         const yearValue = document.getElementById("yrSemester").value;
         const course = document.getElementById("course").value;
@@ -83,19 +81,11 @@ function generateSchedules() {
         const faculty = JSON.parse(localStorage.getItem('faculties')) || []; 
         const existingSchedules = JSON.parse(localStorage.getItem('schedules')) || [];
 
-      
         const relevantSubjects = subjects.filter(subj => 
             subj.course === course && subj.year == yearNumber && subj.semester === semesterInput.id
         );
 
-        // Debug logs
-        console.log("Relevant Subjects:", relevantSubjects);
-        console.log("Available Rooms:", rooms);
-        console.log("Available Faculty:", faculty);
-        console.log("Existing Schedules:", existingSchedules);
-
         if (relevantSubjects.length === 0) {
-            console.log("Subjects in storage:", JSON.parse(localStorage.getItem('subjects')));
             alert("No subjects found for the selected course and year. Please add subjects first.");
             return;
         }
@@ -120,8 +110,6 @@ function generateSchedules() {
             semesterInput.id === "firstSemester" ? "First Semester" : "Second Semester"
         );
 
-        console.log("Generated Schedule:", schedule);
-
         displaySchedule(schedule, `${course}${yearNumber}${section}`, 
             semesterInput.id === "firstSemester" ? "First Semester" : "Second Semester",
             `${new Date().getFullYear()}-${new Date().getFullYear() + 1}`
@@ -134,121 +122,104 @@ function generateSchedules() {
     }
 }
 
-//  nakakabaliw toh pramis eto yung complik pri na scheduling
 function generateConflictFreeSchedule(subjects, rooms, faculty, existingSchedules, courseSection, semester) {
-    // Create data structures to track availability
-    const roomAvailability = {};
-    const facultyAvailability = {};
     const newSchedule = [];
+    const usedTimes = {}; 
     
-    // Initialize availability trackers
     DAYS.forEach(day => {
-        roomAvailability[day] = {};
-        facultyAvailability[day] = {};
-        
-        TIME_SLOTS.forEach(slot => {
-            roomAvailability[day][slot] = rooms.map(room => room.name || room);
-            facultyAvailability[day][slot] = faculty.map(f => f.name || f);
-        });
+        usedTimes[day] = [];
     });
-    
 
-    existingSchedules.forEach(sched => {
-        sched.schedule.forEach(item => {
-            const day = item.dayTime.split('\n')[0];
-            const timeSlot = item.dayTime.split('\n')[1];
-            
-            // Mark room as unavailable
-            const roomIndex = roomAvailability[day][timeSlot]?.indexOf(item.room);
-            if (roomIndex !== undefined && roomIndex !== -1) {
-                roomAvailability[day][timeSlot].splice(roomIndex, 1);
-            }
-            
-            // Mark faculty as unavailable
-            const facultyIndex = facultyAvailability[day][timeSlot]?.indexOf(item.faculty);
-            if (facultyIndex !== undefined && facultyIndex !== -1) {
-                facultyAvailability[day][timeSlot].splice(facultyIndex, 1);
-            }
-        });
-    });
-    
-    // Assign each subject to a time slot
-    subjects.forEach(subject => {
-        let assigned = false;
-        const hoursNeeded = subject.hours || 3;
+
+    function findAvailableSlot(subject, day) {
+        const hoursNeeded = parseInt(subject.hours) || 3; 
+        const availableSlots = [];
         
-
-        for (let day of DAYS) {
-            for (let i = 0; i <= TIME_SLOTS.length - hoursNeeded; i++) {
-                const slots = TIME_SLOTS.slice(i, i + hoursNeeded);
-                const firstSlot = slots[0];
-                
-     
-                const slotsAvailable = slots.every(slot => 
-                    roomAvailability[day][slot]?.length > 0 && 
-                    facultyAvailability[day][slot]?.length > 0
-                );
-                
-                if (slotsAvailable) {
-                  
-                    const availableRooms = slots.reduce((common, slot) => 
-                        common.filter(room => roomAvailability[day][slot].includes(room)), 
-                        roomAvailability[day][firstSlot]
-                    );
-                    
-                    const availableFaculty = slots.reduce((common, slot) => 
-                        common.filter(f => facultyAvailability[day][slot].includes(f)), 
-                        facultyAvailability[day][firstSlot]
-                    );
-                    
-                    if (availableRooms.length > 0 && availableFaculty.length > 0) {
-       
-                        const selectedRoom = availableRooms[Math.floor(Math.random() * availableRooms.length)];
-                        const selectedFaculty = availableFaculty[Math.floor(Math.random() * availableFaculty.length)];
-                        
-                    
-                        newSchedule.push({
-                            code: subject.code,
-                            name: subject.name,
-                            day: day,
-                            time: `${slots[0].split(' - ')[0]} - ${slots[slots.length-1].split(' - ')[1]}`,
-                            room: selectedRoom,
-                            faculty: selectedFaculty
-                        });
-                        
-                        slots.forEach(slot => {
-                            
-                            const roomIndex = roomAvailability[day][slot].indexOf(selectedRoom);
-                            if (roomIndex !== -1) {
-                                roomAvailability[day][slot].splice(roomIndex, 1);
-                            }
-                            
-                           
-                            const facultyIndex = facultyAvailability[day][slot].indexOf(selectedFaculty);
-                            if (facultyIndex !== -1) {
-                                facultyAvailability[day][slot].splice(facultyIndex, 1);
-                            }
-                        });
-                        
-                        assigned = true;
-                        break;
-                    }
+        // eto taga hanap ng time slots para ma accomodate ang mga subjects
+        for (let i = 0; i < TIME_SLOTS.length - hoursNeeded + 1; i++) {
+            let isAvailable = true;
+            
+        
+            for (let j = 0; j < hoursNeeded; j++) {
+                const slotIndex = i + j;
+                if (slotIndex >= TIME_SLOTS.length || 
+                    usedTimes[day].includes(TIME_SLOTS[slotIndex])) {
+                    isAvailable = false;
+                    break;
                 }
-                
-                if (assigned) break;
             }
-            if (assigned) break;
+            
+            if (isAvailable) {
+                availableSlots.push(i);
+            }
+        }
+        
+        if (availableSlots.length === 0) return null;
+        
+        // Random starting time slot
+        const randomIndex = Math.floor(Math.random() * availableSlots.length);
+        const startSlot = availableSlots[randomIndex];
+        const selectedSlots = [];
+        
+        // Mark taym slots as used
+        for (let i = 0; i < hoursNeeded; i++) {
+            const slot = TIME_SLOTS[startSlot + i];
+            usedTimes[day].push(slot);
+            selectedSlots.push(slot);
+        }
+        
+        return {
+            day: day,
+            slots: selectedSlots,
+            timeString: selectedSlots.length > 1 
+                ? `${selectedSlots[0].split(' - ')[0]} - ${selectedSlots[selectedSlots.length-1].split(' - ')[1]}`
+                : selectedSlots[0]
+        };
+    }
+
+    subjects.forEach(subject => {
+     
+        let assigned = false;
+        const shuffledDays = [...DAYS].sort(() => 0.5 - Math.random()); // Randomize day order
+        
+        for (const day of shuffledDays) {
+            const slotInfo = findAvailableSlot(subject, day);
+            if (slotInfo) {
+                // Find available room
+                const availableRooms = [...rooms];
+                const randomRoom = availableRooms[Math.floor(Math.random() * availableRooms.length)];
+                
+                // Find available faculty
+                const availableFaculty = faculty.filter(f => 
+                    f.type === 'Full Time' || 
+                    (f.shift === 'AM' && slotInfo.timeString.includes('AM')) ||
+                    (f.shift === 'PM' && slotInfo.timeString.includes('PM'))
+                );
+                const randomFaculty = availableFaculty[Math.floor(Math.random() * availableFaculty.length)];
+                
+                if (randomRoom && randomFaculty) {
+                    newSchedule.push({
+                        code: subject.code,
+                        name: subject.name,
+                        day: day,
+                        time: slotInfo.timeString,
+                        room: randomRoom.name,
+                        faculty: randomFaculty.name
+                    });
+                    assigned = true;
+                    break;
+                }
+            }
         }
         
         if (!assigned) {
-            throw new Error(`Could not find available slot for ${subject.code}. Please add more rooms or faculty.`);
+            console.warn(`Could not assign time slot for subject: ${subject.code}`);
         }
     });
-    
+
     return newSchedule;
 }
 
-// display generated schedule
 function displaySchedule(schedule, courseYearSection, semester, academicYear) {
     document.getElementById("previewSemester").textContent = semester;
     document.getElementById("previewCourseYearSection").textContent = courseYearSection;
@@ -281,7 +252,6 @@ function displaySchedule(schedule, courseYearSection, semester, academicYear) {
     });
 }
 
-// Function to save schedule to local storage
 function saveSchedule() {
     const tbody = document.querySelector("#previewTable tbody");
     if (!tbody || tbody.rows.length === 0) {
@@ -331,7 +301,6 @@ function saveSchedule() {
     alert("Schedule saved successfully!");
 }
 
-// etoo print wahahaha
 function printSchedule() {
     const printWindow = window.open('', '', 'width=800,height=600');
     printWindow.document.write(`
@@ -368,148 +337,6 @@ function printSchedule() {
     printWindow.document.close();
 }
 
-function downloadScheduleAsPDF(sched) {
-    const win = window.open('', '', 'width=900,height=700');
-    const isDark = document.body.classList.contains('dark-mode');
-    win.document.write(`
-        <html>
-        <head>
-            <title>BULACAN POLYTECHNIC COLLEGE</title>
-            <style>
-                body { font-family: Arial, sans-serif; background: ${isDark ? '#222' : '#fff'}; color: ${isDark ? '#fff' : '#222'}; }
-                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                th { background-color: ${isDark ? '#333' : '#f2f2f2'}; }
-                h3, h4 { margin: 5px 0; }
-            </style>
-        </head>
-        <body>
-            <h3>${sched.courseYearSection}</h3>
-            <h4>${sched.semester}</h4>
-            <h4>Academic Year: ${sched.academicYear}</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Subject Code</th>
-                        <th>Day/Time</th>
-                        <th>Room</th>
-                        <th>Faculty</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${sched.schedule.map(item => `
-                        <tr>
-                            <td>${item.code}</td>
-                            <td style="white-space:pre-line">${item.dayTime}</td>
-                            <td>${item.room}</td>
-                            <td>${item.faculty}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-            <script>
-                window.onload = function() {
-                    setTimeout(function() {
-                        window.print();
-                        window.close();
-                    }, 200);
-                };
-            </script>
-        </body>
-        </html>
-    `);
-    win.document.close();
-}
-
-// Update previewSchedule to attach the new PDF button handler
-function previewSchedule(index) {
-    const schedules = JSON.parse(localStorage.getItem('schedules')) || [];
-    const sched = schedules[index];
-    if (!sched) return;
-
-    document.getElementById('schedulePreviewContainer').style.display = 'block';
-    document.getElementById('schedulePreviewHeader').innerHTML = `
-        <h3>${sched.courseYearSection}</h3>
-        <h4>${sched.semester}</h4>
-        <h4>Academic Year: ${sched.academicYear}</h4>
-    `;
-
-    const tbody = document.querySelector('#schedulePreviewTable tbody');
-    tbody.innerHTML = '';
-    sched.schedule.forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.code}</td>
-            <td style="white-space:pre-line">${item.dayTime}</td>
-            <td>${item.room}</td>
-            <td>${item.faculty}</td>
-        `;
-        tbody.appendChild(row);
-    });
-
-
-    document.getElementById('printScheduleBtn').onclick = function() {
-        printSchedulePreview(sched);
-    };
-   
-    const pdfBtn = document.getElementById('downloadPdfBtn');
-    if (pdfBtn) pdfBtn.remove();
-}
-
-
-function printSchedulePreview(sched) {
-    const win = window.open('', '', 'width=900,height=700');
-    const isDark = document.body.classList.contains('dark-mode');
-    win.document.write(`
-        <html>
-        <head>
-            <title>BULACAN POLYTECHNIC COLLEGE</title>
-            <style>
-                body { font-family: Arial, sans-serif; background: ${isDark ? '#222' : '#fff'}; color: ${isDark ? '#fff' : '#222'}; }
-                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                th { background-color: ${isDark ? '#333' : '#f2f2f2'}; }
-                h3, h4 { margin: 5px 0; }
-            </style>
-        </head>
-        <body>
-            <h3>${sched.courseYearSection}</h3>
-            <h4>${sched.semester}</h4>
-            <h4>Academic Year: ${sched.academicYear}</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Subject Code</th>
-                        <th>Day/Time</th>
-                        <th>Room</th>
-                        <th>Faculty</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${sched.schedule.map(item => `
-                        <tr>
-                            <td>${item.code}</td>
-                            <td style="white-space:pre-line">${item.dayTime}</td>
-                            <td>${item.room}</td>
-                            <td>${item.faculty}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-            <script>
-                window.onload = function() {
-                    setTimeout(function() {
-                        window.print();
-                        window.close();
-                    }, 200);
-                };
-            </script>
-        </body>
-        </html>
-    `);
-    win.document.close();
-}
-
 // 4. Subject Management
 function showSubjectForm() {
     document.getElementById('subjectOverlay').style.display = 'flex';
@@ -520,14 +347,12 @@ function hideSubjectForm() {
 }
 
 function addSubject() {
-
     const code = document.getElementById('subjectCode').value.trim();
     const name = document.getElementById('subjectName').value.trim();
     const course = document.getElementById('subjectCourse').value;
     const year = document.getElementById('subjectYear').value;
     const semester = document.getElementById('subjectSemester').value;
     const hours = document.getElementById('subjectHours').value;
-
 
     if (!code || !name || !course || !year || !semester || !hours) {
         alert('Please fill all required fields');
@@ -544,11 +369,7 @@ function addSubject() {
     };
 
     addSubjectToUI(subject);
-
-
     saveSubjectToStorage(subject);
-
-
     clearSubjectForm();
     hideSubjectForm();
 }
@@ -589,13 +410,11 @@ function editSubject(button) {
     const name = item.querySelector('.subj-name').textContent;
     const details = item.querySelector('.subj-details').textContent;
     
-
     const [course, yearData, semesterData, hoursData] = details.split(', ');
     const courseValue = course.split(' ')[0];
     const yearValue = yearData.split(' ')[1];
     const semesterValue = semesterData.includes('1st') ? 'firstSemester' : 'secondSemester';
     const hoursValue = hoursData.match(/\d+/)[0];
-
 
     document.getElementById('subjectCode').value = code;
     document.getElementById('subjectName').value = name;
@@ -603,7 +422,6 @@ function editSubject(button) {
     document.getElementById('subjectYear').value = yearValue;
     document.getElementById('subjectSemester').value = semesterValue;
     document.getElementById('subjectHours').value = hoursValue;
-
 
     item.remove();
     removeSubjectFromStorage(code);
@@ -642,10 +460,50 @@ function initializeSampleData() {
                 hours: 3
             },
             {
-                code: "CT-OOP 223",
-                name: "Object-Oriented Programming",
+                code: "CP2 123",
+                name: "Computer Programming 2",
                 course: "BSIS",
-                year: "2",
+                year: "1",
+                semester: "firstSemester",
+                hours: 3
+            },
+            {
+                code: "OOP 123",
+                name: "Object Oriented Programming",
+                course: "BSIS",
+                year: "1",
+                semester: "firstSemester",
+                hours: 3
+            },
+            {
+                code: "CC-IC 123",
+                name: "Introduction To Computing",
+                course: "BSIS",
+                year: "1",
+                semester: "firstSemester",
+                hours: 3
+            },
+            {
+                code: "PE 123",
+                name: "Physical Education",
+                course: "BSIS",
+                year: "1",
+                semester: "firstSemester",
+                hours: 3
+            },
+            {
+                code: "TCW 123",
+                name: "The Contemporary World",
+                course: "BSIS",
+                year: "1",
+                semester: "firstSemester",
+                hours: 3
+            },
+            {
+                code: "DSA 223",
+                name: "Data Structures and Algorithm",
+                course: "BSIS",
+                year: "1",
                 semester: "firstSemester",
                 hours: 3
             }
@@ -658,7 +516,11 @@ function initializeSampleData() {
             { name: "Room 101", id: "room101" },
             { name: "Room 102", id: "room102" },
             { name: "NTT Lab", id: "nttlab" },
-            { name: "Computer Lab 1", id: "complab1" }
+            { name: "Computer Lab 1", id: "complab1" },
+            { name: "Computer Lab 2", id: "complab2" },
+            { name: "Computer Lab 3", id: "complab3" },
+            { name: "Computer Lab 4", id: "complab4" },
+            { name: "PE Room", id: "peroom" }            
         ];
         localStorage.setItem('rooms', JSON.stringify(sampleRooms));
     }
@@ -673,11 +535,46 @@ function initializeSampleData() {
                 id: "fac1"
             },
             { 
+                name: "Prof. Krizan Takeda", 
+                head: "BSIS Dept", 
+                type: "Full Time", 
+                shift: "AM/PM",
+                id: "fac2"
+            },
+            { 
+                name: "Prof. Dheniel Cruz", 
+                head: "BTVTED Dept", 
+                type: "Full Time", 
+                shift: "AM/PM",
+                id: "fac3"
+            },
+            { 
+                name: "Prof. Aron Pangiligan", 
+                head: "BSIS Dept", 
+                type: "Full Time", 
+                shift: "AM/PM",
+                id: "fac4"
+            },
+            { 
+                name: "Prof. Mark Lacatan", 
+                head: "BTVTED Dept", 
+                type: "Full Time", 
+                shift: "AM/PM",
+                id: "fac5"
+            },
+            { 
+                name: "Prof. Narvie Pham", 
+                head: "BSIS Dept", 
+                type: "Full Time", 
+                shift: "AM/PM",
+                id: "fac6"
+            },
+            { 
                 name: "Prof. Russel Escote", 
-                head: "IS Dept", 
+                head: "BSIS Dept", 
                 type: "Part Time", 
                 shift: "PM",
-                id: "fac2"
+                id: "fac7"
             }
         ];
         localStorage.setItem('faculties', JSON.stringify(sampleFaculty));
@@ -746,23 +643,18 @@ function previewSchedule(index) {
         tbody.appendChild(row);
     });
 
-  
     document.getElementById('printScheduleBtn').onclick = function() {
         printSchedulePreview(sched);
     };
-  
-    const pdfBtn = document.getElementById('downloadPdfBtn');
-    if (pdfBtn) pdfBtn.remove();
 }
 
-// Print or save as PDF (combined)
 function printSchedulePreview(sched) {
     const win = window.open('', '', 'width=900,height=700');
     const isDark = document.body.classList.contains('dark-mode');
     win.document.write(`
         <html>
         <head>
-            <title>BULACAN POLYTECHNIC COLLEGE</title>
+            <title>Print or Save Schedule as PDF</title>
             <style>
                 body { font-family: Arial, sans-serif; background: ${isDark ? '#222' : '#fff'}; color: ${isDark ? '#fff' : '#222'}; }
                 table { width: 100%; border-collapse: collapse; margin-top: 20px; }
