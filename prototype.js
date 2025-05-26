@@ -727,7 +727,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSampleData();
     const subjects = JSON.parse(localStorage.getItem('subjects')) || [];
     subjects.forEach(subject => addSubjectToUI(subject));
-    // Check Schedules tab
     const checkTabBtn = document.querySelector('[data-tab-target="#checkTab"]');
     if (checkTabBtn) {
         checkTabBtn.addEventListener('click', function () {
